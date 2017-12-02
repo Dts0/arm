@@ -11,6 +11,7 @@
 //TIM5 ch1,2,3,4=PA0,1,2,3
 
 void Encoder1Init(void);
+void Encoder1LEDInit(void);
 uint32_t Encoder1GetCount(void);//获得计数数
 uint32_t Encoder1GetDeg(void);//获得当前位置的度数,保留到整数
 int Encoder1GetTurn(void);//获得圈数
