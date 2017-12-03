@@ -6,21 +6,27 @@
 
 //osThreadDef (task1, osPriorityNormal, 1, 0);
 //osThreadId id1,id2;
+os_pthread thread_main0=(os_pthread)thread_main;
+os_pthread thread_serial_send0=(os_pthread)thread_serial_send;
+os_pthread thread_serial_receive0=(os_pthread)thread_serial_receive;
+os_pthread thread_LED0=(os_pthread)thread_LED;
 
-osThreadDef(thread_main,osPriorityNormal, 1, 0);
-osThreadDef(thread_serial_send,osPriorityNormal,1,8*((sizeof(sysState *)+30*sizeof(char))));//(sizeof(sysState *)+30*sizeof(char))
-osThreadDef(thread_serial_receive,osPriorityNormal,1,200);//5*sizeof(char)
-osThreadDef(thread_LED,osPriorityNormal, 1, 100);//2*sizeof(int)
 
 osMutexDef (uart_mutex);    
 osMutexId  uart_mutex_id; // Mutex ID
 
 sysState state;
-ids id;
+IDs ids;
+Motors motors;
 	
+void motorsConfig(Motors *ms);
+void flagInit(sysState *flags);
+
 int main()
 {
+	flagInit(&state);
 	SerialInit();
+	motorsConfig(&motors);//电机配置
 	if(osKernelInitialize ()==osOK)
 		;//系统成功初始化时的代码
 #ifdef _DEBUG
@@ -28,19 +34,23 @@ int main()
 #endif
 //添加thread	
 //	id1 = osThreadCreate (osThread (task1), NULL); 
-	id.id_main=osThreadCreate (osThread (thread_main), NULL);
+	osThreadDef(thread_main0,osPriorityNormal, 1, 1000);
+	ids.id_main=osThreadCreate (osThread (thread_main0), NULL);
 #ifdef _DEBUG
 	SerialPrintf("thread_main create\n");
 #endif
-	id.id_serial_send=osThreadCreate(osThread(thread_serial_send),&state);
+	osThreadDef(thread_serial_send0,osPriorityNormal,1,8*((sizeof(sysState *)+30*sizeof(char))));//(sizeof(sysState *)+30*sizeof(char))
+	ids.id_serial_send=osThreadCreate(osThread(thread_serial_send0),&state);
 #ifdef _DEBUG
 	SerialPrintf("thread_serial_send create\n");
 #endif
-	id.id_serial_receive=osThreadCreate(osThread(thread_serial_receive),NULL);
+	osThreadDef(thread_serial_receive0,osPriorityNormal,1,200);//5*sizeof(char)
+	ids.id_serial_receive=osThreadCreate(osThread(thread_serial_receive0),NULL);
 #ifdef _DEBUG
 	SerialPrintf("thread_serial_receive create\n");
 #endif
-	id.id_LED=osThreadCreate (osThread (thread_LED), NULL);
+	osThreadDef(thread_LED0,osPriorityNormal, 1, 100);//2*sizeof(int)
+	ids.id_LED=osThreadCreate (osThread (thread_LED0), NULL);
 #ifdef _DEBUG
 	SerialPrintf("thread_LED create\n");
 #endif
@@ -54,4 +64,25 @@ int main()
 	osKernelStart ();
 
 	while(1);//正常情况下程序无法执行到这里
+}
+
+void motorsConfig(Motors *ms)
+{
+	ms->motor0->id=0;
+	ms->motor0->GPIOx=GPIOA;
+	ms->motor0->GPIO_Pin_x1=GPIO_Pin_2;
+	ms->motor0->GPIO_Pin_x2=GPIO_Pin_3;
+	motorInit(ms->motor0);
+	//其他电机的配置参考0号电机
+	
+	#ifdef _DEBUG
+	SerialPrintf("motor config\n");
+#endif
+}
+void flagInit(sysState *flags)
+{
+	
+	#ifdef _DEBUG
+	SerialPrintf("flags init\n");
+#endif
 }

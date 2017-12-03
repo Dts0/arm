@@ -8,6 +8,7 @@ typedef enum {
 	on=1,//正转
 	rev=2//反转
 } motorStatus;
+typedef void (*function)(void);
 
 typedef struct
 {
@@ -15,6 +16,7 @@ typedef struct
 	GPIO_TypeDef *GPIOx;
 	uint16_t GPIO_Pin_x1;//控制电机的管脚
 	uint16_t GPIO_Pin_x2;//
+	function stopFunc;
 } motor;
 
 void motorInit(motor *motorPointer);//指定电机的初始化
