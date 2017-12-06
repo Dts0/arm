@@ -390,6 +390,11 @@
               <FileType>1</FileType>
               <FilePath>.\main\main.c</FilePath>
             </File>
+            <File>
+              <FileName>config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\main\config.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -439,6 +444,18 @@
         </Group>
         <Group>
           <GroupName>cmds</GroupName>
+          <Files>
+            <File>
+              <FileName>cmds.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\cmds\cmds.h</FilePath>
+            </File>
+            <File>
+              <FileName>cmds.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cmds\cmds.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>motor</GroupName>
@@ -596,6 +613,18 @@
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
+      </file>
+      <file attr="config" category="source" name="emWin\Sample\Config\GUIConf.c" version="5.0.0">
+        <instance index="0" removed="1">RTE\Graphics\GUIConf.c</instance>
+        <component Cbundle="MDK-Pro" Cclass="Graphics" Cgroup="CORE" Cvendor="Segger" Cversion="5.36.6" condition="CMSIS Core with RTOS and Display"/>
+        <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.4.1"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" name="emWin\Sample\Config\LCDConf.c" version="5.0.0">
+        <instance index="0" removed="1">RTE\Graphics\LCDConf.c</instance>
+        <component Cbundle="MDK-Pro" Cclass="Graphics" Cgroup="Display" Csub="Interface Template" Cvendor="Segger" Cversion="5.36.6" condition="Graphics Core"/>
+        <package name="MDK-Middleware" schemaVersion="1.4" url="http://www.keil.com/pack/" vendor="Keil" version="7.4.1"/>
+        <targetInfos/>
       </file>
     </files>
   </RTE>

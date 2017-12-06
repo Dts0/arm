@@ -68,11 +68,11 @@ int main()
 
 void motorsConfig(Motors *ms)
 {
-	ms->motor0->id=0;
-	ms->motor0->GPIOx=GPIOA;
-	ms->motor0->GPIO_Pin_x1=GPIO_Pin_2;
-	ms->motor0->GPIO_Pin_x2=GPIO_Pin_3;
-	motorInit(ms->motor0);
+	ms->motor0_TieBiZhuangZhi->id=0;
+	ms->motor0_TieBiZhuangZhi->GPIOx=GPIOA;
+	ms->motor0_TieBiZhuangZhi->GPIO_Pin_x1=GPIO_Pin_2;
+	ms->motor0_TieBiZhuangZhi->GPIO_Pin_x2=GPIO_Pin_3;
+	motorInit(ms->motor0_TieBiZhuangZhi);
 	//其他电机的配置参考0号电机
 	
 	#ifdef _DEBUG
@@ -81,8 +81,25 @@ void motorsConfig(Motors *ms)
 }
 void flagInit(sysState *flags)
 {
-	
-	#ifdef _DEBUG
+	flags->flag_running=false;
+	flags->runningFlag0_TieBiZhuangZhi=off;
+	flags->runningFlag1_JuanYangJi=off;
+	flags->runningFlag2_DangLiaoBan=off;
+	flags->runningFlag3_TuiBan=off;
+	flags->runningFlag4_CeDangBan=off;
+	flags->runningFlag5_TuiLiaoShenSuoJi=off;
+	flags->runningFlagy=off;
+	flags->postionFlag0_TieBiZhuangZhi=close;
+	flags->postionFlag1_JuanYangJi=close;
+	flags->postionFlag2_DangLiaoBan=close;
+	flags->postionFlag3_TuiBan=close;
+	flags->postionFlag4_CeDangBan=close;
+	flags->postionFlag5_TuiLiaoShenSuoJi=close;
+	flags->num=0;
+	flags->column=0;
+	flags->height=0;
+	flags->localStep=0;
+#ifdef _DEBUG
 	SerialPrintf("flags init\n");
 #endif
 }

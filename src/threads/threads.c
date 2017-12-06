@@ -34,21 +34,21 @@ void thread_main(void *p)
 	motorTurn(motors.motory,on);
 	
 	//贴壁装置打开
-	os_pthread thread_motor0=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor0,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor0=osThreadCreate(osThread(thread_motor0),motors.motor0);
+	os_pthread thread_motor0_TieBiZhuangZhi=(os_pthread)thread_turnOnMotor;
+	osThreadDef(thread_motor0_TieBiZhuangZhi,osPriorityNormal, 1, motorThreadStackSize);
+	ids.id_motor0_TieBiZhuangZhi=osThreadCreate(osThread(thread_motor0_TieBiZhuangZhi),motors.motor0_TieBiZhuangZhi);
 	//卷扬机启动
-	os_pthread thread_motor1=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor1,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor1=osThreadCreate(osThread(thread_motor1),motors.motor1);
+	os_pthread thread_motor1_JuanYangJi=(os_pthread)thread_turnOnMotor;
+	osThreadDef(thread_motor1_JuanYangJi,osPriorityNormal, 1, motorThreadStackSize);
+	ids.id_motor1_JuanYangJi=osThreadCreate(osThread(thread_motor1_JuanYangJi),motors.motor1_JuanYangJi);
 	//挡料板抬起
-	os_pthread thread_motor2=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor2,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor2=osThreadCreate(osThread(thread_motor2),motors.motor2);
+	os_pthread thread_motor2_DangLiaoBan=(os_pthread)thread_turnOnMotor;
+	osThreadDef(thread_motor2_DangLiaoBan,osPriorityNormal, 1, motorThreadStackSize);
+	ids.id_motor2_DangLiaoBan=osThreadCreate(osThread(thread_motor2_DangLiaoBan),motors.motor2_DangLiaoBan);
 	//驱动挡料板
-	os_pthread thread_motor3=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor3,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor3=osThreadCreate(osThread(thread_motor3),motors.motor3);
+	os_pthread thread_motor3_TuiBan=(os_pthread)thread_turnOnMotor;
+	osThreadDef(thread_motor3_TuiBan,osPriorityNormal, 1, motorThreadStackSize);
+	ids.id_motor3_TuiBan=osThreadCreate(osThread(thread_motor3_TuiBan),motors.motor3_TuiBan);
 	
 	osDelay(8000);//假设8秒到最里
 	motorTurn(motors.motory,off);
@@ -56,61 +56,61 @@ void thread_main(void *p)
 	//step2:装料循环
 	step2:
 	//侧挡板向外推出
-	motorTurn(motors.motor4,on);
+	motorTurn(motors.motor4_CeDangBan,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行1秒为从右到中
 	osDelay(1000);
-	motorTurn(motors.motor4,off);
+	motorTurn(motors.motor4_CeDangBan,off);
 //step2_1://物料1
 	//伸缩机推出以及返回
-	motorTurn(motors.motor5,on);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
 	osDelay(2000);
-	motorTurn(motors.motor5,off);
-	motorTurn(motors.motor5,rev);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
 	osDelay(2000);
 	
 	//推板
-	motorTurn(motors.motor3,on);
+	motorTurn(motors.motor3_TuiBan,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行1秒为从右到中
 	osDelay(2000);
-	motorTurn(motors.motor3,off);
-	motorTurn(motors.motor3,rev);
+	motorTurn(motors.motor3_TuiBan,off);
+	motorTurn(motors.motor3_TuiBan,rev);
 	osDelay(2000);
 //step2_2://物料2
 	//伸缩机推出以及返回
-	motorTurn(motors.motor5,on);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
 	osDelay(2000);
-	motorTurn(motors.motor5,off);
-	motorTurn(motors.motor5,rev);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
 	osDelay(2000);
 	
 	//推板
-	motorTurn(motors.motor3,on);
+	motorTurn(motors.motor3_TuiBan,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行1秒为从右到中
 	osDelay(1000);
-	motorTurn(motors.motor3,off);
+	motorTurn(motors.motor3_TuiBan,off);
 	
 //step2_3://物料3
 	//伸缩机推出以及返回
-	motorTurn(motors.motor5,on);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
 	osDelay(2000);
-	motorTurn(motors.motor5,off);
-	motorTurn(motors.motor5,rev);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
 	osDelay(2000);
 	
 	//推板将物料3推至最右侧
-	motorTurn(motors.motor3,rev);
+	motorTurn(motors.motor3_TuiBan,rev);
 	osDelay(1000);
 	
 //step2_4://物料4
 	//伸缩机推出以及返回
-	motorTurn(motors.motor5,on);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
 	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
 	osDelay(2000);
-	motorTurn(motors.motor5,off);
-	motorTurn(motors.motor5,rev);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
+	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
 	osDelay(2000);
 	
 //step3://判断是否码够N层,不够时返回step2,码下一层
@@ -121,9 +121,9 @@ void thread_main(void *p)
 	}
 //step4://判断是否码够M列,不够时返回step3,码下一列(即判断是否码完整个集装箱)
 	//松开贴壁装置
-		motorTurn(motors.motor0,rev);
+		motorTurn(motors.motor0_TieBiZhuangZhi,rev);
 		osDelay(1000);
-		motorTurn(motors.motor0,off);
+		motorTurn(motors.motor0_TieBiZhuangZhi,off);
 	if(state.column<MaxColumn)
 	{
 		//机器在y方向后退一个单位(向集装箱外移动一个单位)
@@ -148,31 +148,31 @@ void thread_serial_send(void *p)
 	while(1)
 	{
 	sprintf(msg,"%s%d ",msg,state->flag_running);
-	sprintf(msg,"%s%d ",msg,state->runningFlagx);
-	sprintf(msg,"%s%d ",msg,state->runningFlag0);
-	sprintf(msg,"%s%d ",msg,state->runningFlag1);
-	sprintf(msg,"%s%d ",msg,state->runningFlag2);
-	sprintf(msg,"%s%u ",msg,state->runningFlag3);
-	sprintf(msg,"%s%d ",msg,state->runningFlag4);
-	sprintf(msg,"%s%d ",msg,state->runningFlag5);
-	sprintf(msg,"%s%d ",msg,state->postionFlag0);
-	sprintf(msg,"%s%d ",msg,state->postionFlag1);
-	sprintf(msg,"%s%d ",msg,state->postionFlag2);
-	sprintf(msg,"%s%u ",msg,state->postionFlag3);
-	sprintf(msg,"%s%d ",msg,state->postionFlag4);
-	sprintf(msg,"%s%d ",msg,state->postionFlag5);
+	sprintf(msg,"%s%d ",msg,state->runningFlagy);
+	sprintf(msg,"%s%d ",msg,state->runningFlag0_TieBiZhuangZhi);
+	sprintf(msg,"%s%d ",msg,state->runningFlag1_JuanYangJi);
+	sprintf(msg,"%s%d ",msg,state->runningFlag2_DangLiaoBan);
+	sprintf(msg,"%s%u ",msg,state->runningFlag3_TuiBan);
+	sprintf(msg,"%s%d ",msg,state->runningFlag4_CeDangBan);
+	sprintf(msg,"%s%d ",msg,state->runningFlag5_TuiLiaoShenSuoJi);
+	sprintf(msg,"%s%d ",msg,state->postionFlag0_TieBiZhuangZhi);
+	sprintf(msg,"%s%d ",msg,state->postionFlag1_JuanYangJi);
+	sprintf(msg,"%s%d ",msg,state->postionFlag2_DangLiaoBan);
+	sprintf(msg,"%s%u ",msg,state->postionFlag3_TuiBan);
+	sprintf(msg,"%s%d ",msg,state->postionFlag4_CeDangBan);
+	sprintf(msg,"%s%d ",msg,state->postionFlag5_TuiLiaoShenSuoJi);
 	sprintf(msg,"%s%u ",msg,state->num);
-	sprintf(msg,"%s%u ",msg,state->height);
+	sprintf(msg,"%s%d ",msg,state->height);
 	sprintf(msg,"%s%u ",msg,state->column);
 	sprintf(msg,"%s%u ",msg,state->localStep);
 	sprintf(msg,"%s   ",msg);
 	os_serialPrintf(msg);
 	sprintf(msg,"");//清空msg
-	osDelay(1000);//每秒发送一次消息
+	osDelay(_SEND_DELAY_TIME);//每秒发送一次消息
 	}
 }
-const char* cmds[]={"STOP","RST","CONT","RSD"};//////////////////////////////////////////
-//stop,reset,continue,resend
+
+extern const char* cmds[];
 void thread_serial_receive(void *p)
 {
 #ifdef _DEBUG
@@ -294,12 +294,12 @@ void setStateRunFlag(int id,motorStatus flag)
 {
 	switch(id)
 	{
-		case 0:state.runningFlag0=flag;break;
-		case 1:state.runningFlag1=flag;break;
-		case 2:state.runningFlag2=flag;break;
-		case 3:state.runningFlag3=flag;break;
-		case 4:state.runningFlag4=flag;break;
-		case 5:state.runningFlag5=flag;break;
+		case 0:state.runningFlag0_TieBiZhuangZhi=flag;break;
+		case 1:state.runningFlag1_JuanYangJi=flag;break;
+		case 2:state.runningFlag2_DangLiaoBan=flag;break;
+		case 3:state.runningFlag3_TuiBan=flag;break;
+		case 4:state.runningFlag4_CeDangBan=flag;break;
+		case 5:state.runningFlag5_TuiLiaoShenSuoJi=flag;break;
 		default:;
 	}
 }
@@ -307,12 +307,12 @@ void setStatePosFlag(int id,postionStatus flag)
 {
 	switch(id)
 	{
-		case 0:state.postionFlag0=flag;break;
-		case 1:state.postionFlag1=flag;break;
-		case 2:state.postionFlag2=flag;break;
-		case 3:state.postionFlag3=flag;break;
-		case 4:state.postionFlag4=flag;break;
-		case 5:state.postionFlag5=flag;break;
+		case 0:state.postionFlag0_TieBiZhuangZhi=flag;break;
+		case 1:state.postionFlag1_JuanYangJi=flag;break;
+		case 2:state.postionFlag2_DangLiaoBan=flag;break;
+		case 3:state.postionFlag3_TuiBan=flag;break;
+		case 4:state.postionFlag4_CeDangBan=flag;break;
+		case 5:state.postionFlag5_TuiLiaoShenSuoJi=flag;break;
 		default:;
 	}
 }

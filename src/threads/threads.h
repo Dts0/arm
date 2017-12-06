@@ -4,7 +4,6 @@
 #include "cmsis_os.h" 
 #include "../main/defines.h"
 
-#define motorThreadStackSize 100
 
 typedef struct
 {
@@ -12,23 +11,23 @@ typedef struct
 	osThreadId id_serial_send;
 	osThreadId id_serial_receive;
 	osThreadId id_LED;
-	osThreadId id_motor0;
-	osThreadId id_motor1;
-	osThreadId id_motor2;
-	osThreadId id_motor3;
-	osThreadId id_motor4;
-	osThreadId id_motor5;
+	osThreadId id_motor0_TieBiZhuangZhi;
+	osThreadId id_motor1_JuanYangJi;
+	osThreadId id_motor2_DangLiaoBan;
+	osThreadId id_motor3_TuiBan;
+	osThreadId id_motor4_CeDangBan;
+	osThreadId id_motor5_TuiLiaoShenSuoJi;
 } IDs;
 
 typedef struct
 {
 	motor *motory;
-	motor *motor0;
-	motor *motor1;
-	motor *motor2;
-	motor *motor3;
-	motor *motor4;
-	motor *motor5;
+	motor *motor0_TieBiZhuangZhi;
+	motor *motor1_JuanYangJi;
+	motor *motor2_DangLiaoBan;
+	motor *motor3_TuiBan;
+	motor *motor4_CeDangBan;
+	motor *motor5_TuiLiaoShenSuoJi;
 } Motors;
 
 void thread_main(void *p);

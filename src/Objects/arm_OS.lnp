@@ -3,6 +3,7 @@
 ".\objects\threads.o"
 ".\objects\encoder.o"
 ".\objects\serial.o"
+".\objects\cmds.o"
 ".\objects\motor.o"
 "D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Library\ARM\RTX_CM3.lib"
 ".\objects\cmsis_os1.o"
