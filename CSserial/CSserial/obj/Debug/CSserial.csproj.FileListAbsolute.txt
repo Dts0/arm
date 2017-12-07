@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\bin\Debug\CSserial.exe.config
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\bin\Debug\CSserial.exe
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\bin\Debug\CSserial.pdb
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Debug\CSserial.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Debug\CSserial.Form1.resources
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Debug\CSserial.Properties.Resources.resources
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Debug\CSserial.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Debug\CSserial.exe
+C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Debug\CSserial.pdb
