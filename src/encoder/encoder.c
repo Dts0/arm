@@ -99,6 +99,18 @@ int Encoder1GetTurn(void)
 {
 	return turn1;
 }
+void Encoder1SetTurn(int turn)
+{
+	turn1=turn;
+}
+void Encoder1SetCount(int count)
+{
+	TIM4->CNT=count*4;
+}
+int Encoder1GetDistance(int d)
+{
+	return (int)(turn1*3.14*d+3.14*d*Encoder1GetCount()/400);
+}
 
 void EXTI1_IRQHandler(void)
 {

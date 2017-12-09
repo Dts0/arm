@@ -13,8 +13,8 @@ typedef struct
 	osThreadId id_LED;
 	osThreadId id_motor0_TieBiZhuangZhi;
 	osThreadId id_motor1_JuanYangJi;
-	osThreadId id_motor2_DangLiaoBan;
-	osThreadId id_motor3_TuiBan;
+	osThreadId id_motor2_DangLiaoBanChuiZhi;
+	osThreadId id_motor3_TuiBanChuiZhi;
 	osThreadId id_motor4_CeDangBan;
 	osThreadId id_motor5_TuiLiaoShenSuoJi;
 } IDs;
@@ -24,10 +24,14 @@ typedef struct
 	motor *motory;
 	motor *motor0_TieBiZhuangZhi;
 	motor *motor1_JuanYangJi;
-	motor *motor2_DangLiaoBan;
-	motor *motor3_TuiBan;
+	motor *motor2_DangLiaoBanChuiZhi;
+	motor *motor3_TuiBanChuiZhi;
 	motor *motor4_CeDangBan;
-	motor *motor5_TuiLiaoShenSuoJi;
+	motor *motor5_DangLiaoBanTuiChu;
+	motor *motor6_DaiDaoGan;
+	motor *motor7_DongLiGunTong;
+	motor *motor8_ChuanSongDai;
+	motor *motor9_WuGan;
 } Motors;
 
 void thread_main(void *p);

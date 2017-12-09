@@ -395,6 +395,11 @@
               <FileType>5</FileType>
               <FilePath>.\main\config.h</FilePath>
             </File>
+            <File>
+              <FileName>stopFuncs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main\stopFuncs.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -471,6 +476,9 @@
               <FilePath>.\motor\motor.h</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>New Group</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

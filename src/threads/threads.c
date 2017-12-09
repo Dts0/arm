@@ -15,11 +15,12 @@ extern IDs ids;
 extern osMutexId  uart_mutex_id; // Mutex ID
 
 char *printfBuf;
+int distanceBuf;
 
 void os_serialPrintf(char *str);//加了进程锁的串口输出,防止在传数据过程中被打断
 char *os_serialReceivedString(unsigned int num);
 void setStateRunFlag(int id,motorStatus flag);
-void setStatePosFlag(int id,postionStatus flag);
+void setStatePosFlag(int id,positionStatus flag);
 
 
 void thread_main(void *p)
@@ -29,109 +30,253 @@ void thread_main(void *p)
 #endif
 	
 //step1://step1:进入箱体
+	motorTurn(motors.motory,on);//伸缩机电机正转,小车前进
+	setStateRunFlag(-1,on);
+	while(!HasEnteredBox());//在没有进箱子之前等待,检测光电传感器
+	/*多余内容
+	motorTurn(motors.motory,off);//伸缩机停
+	setStateRunFlag(-1,off);
+	*/
 	
-	//驱动全向轮移动
-	motorTurn(motors.motory,on);
+	/*//新线程,内容等价于
+	motorTurn(motors.motor0_TieBiZhuangZhi,on);//贴壁汽缸向两侧各伸出90mm
+	while(getTieBiPosition()!=open);//等待汽缸达到90mm位置
+	motorTurn(motors.motor0_TieBiZhuangZhi,off);//停止汽缸的伸出
+	*/
+	os_pthread thread_motor0=(os_pthread)thread_turnOnMotor;
+	osThreadDef(thread_motor0,osPriorityNormal, 1, motorThreadStackSize);
+	ids.id_motor0_TieBiZhuangZhi=osThreadCreate (osThread (thread_motor0), NULL);
 	
-	//贴壁装置打开
-	os_pthread thread_motor0_TieBiZhuangZhi=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor0_TieBiZhuangZhi,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor0_TieBiZhuangZhi=osThreadCreate(osThread(thread_motor0_TieBiZhuangZhi),motors.motor0_TieBiZhuangZhi);
-	//卷扬机启动
-	os_pthread thread_motor1_JuanYangJi=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor1_JuanYangJi,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor1_JuanYangJi=osThreadCreate(osThread(thread_motor1_JuanYangJi),motors.motor1_JuanYangJi);
-	//挡料板抬起
-	os_pthread thread_motor2_DangLiaoBan=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor2_DangLiaoBan,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor2_DangLiaoBan=osThreadCreate(osThread(thread_motor2_DangLiaoBan),motors.motor2_DangLiaoBan);
-	//驱动挡料板
-	os_pthread thread_motor3_TuiBan=(os_pthread)thread_turnOnMotor;
-	osThreadDef(thread_motor3_TuiBan,osPriorityNormal, 1, motorThreadStackSize);
-	ids.id_motor3_TuiBan=osThreadCreate(osThread(thread_motor3_TuiBan),motors.motor3_TuiBan);
+	/*//新线程,内容等价于
+	motorTurn(motors.motor4_CeDangBan,on);//侧挡板汽缸向两侧各伸出120mm
+	while(getCeDangBanPosition()!=open);//等待汽缸达到120mm位置
+	motorTurn(motors.motor4_CeDangBan,off);//停止汽缸的伸出
+	*/
+	os_pthread thread_motor4=(os_pthread)thread_turnOnMotor;
+	osThreadDef(thread_motor4,osPriorityNormal, 1, motorThreadStackSize);
+	ids.id_motor4_CeDangBan=osThreadCreate (osThread (thread_motor4), NULL);
 	
-	osDelay(8000);//假设8秒到最里
+	/*多余内容
+	motorTurn(motors.motory,on);//伸缩机电机正转
+	*/
+	//小车继续前行至距离箱底10mm处,小车离集装箱底的距离=集装箱长度-小车长度-编码器计数距离
+	while(BoxLength-CarLength-Encoder2GetDistance(D_ShenSuoJiDianJi)>10);
+	//小于10毫米,伸缩机电机关闭
 	motorTurn(motors.motory,off);
 	
-	//step2:装料循环
-	step2:
-	//侧挡板向外推出
-	motorTurn(motors.motor4_CeDangBan,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行1秒为从右到中
-	osDelay(1000);
-	motorTurn(motors.motor4_CeDangBan,off);
-//step2_1://物料1
-	//伸缩机推出以及返回
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
-	osDelay(2000);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
-	osDelay(2000);
+	while(getCeDangBanPosition()!=open);//检测侧挡板是否打开到位,在侧挡板到位前一直等待
 	
-	//推板
-	motorTurn(motors.motor3_TuiBan,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行1秒为从右到中
-	osDelay(2000);
-	motorTurn(motors.motor3_TuiBan,off);
-	motorTurn(motors.motor3_TuiBan,rev);
-	osDelay(2000);
-//step2_2://物料2
-	//伸缩机推出以及返回
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
-	osDelay(2000);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
-	osDelay(2000);
+	while(!HasItems());//检测动力滚筒上是否有料,无料时等待
 	
-	//推板
-	motorTurn(motors.motor3_TuiBan,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行1秒为从右到中
-	osDelay(1000);
-	motorTurn(motors.motor3_TuiBan,off);
+	step2://装料
+	//计数器为state.num,记录正在装载的物料的编号1,2,3,4
+	motorTurn(motors.motor8_ChuanSongDai,on);//伸缩机传送带电机工作，开始输料
+	motorTurn(motors.motor7_DongLiGunTong,on);//动力滚筒开始运行
 	
-//step2_3://物料3
-	//伸缩机推出以及返回
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
-	osDelay(2000);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
-	osDelay(2000);
+	//M11:物料1
+	while(!HasArrivedAtExtremePosition());//传感器检测料到达动力滚筒极限位置,达到极限位置前一直等待
 	
-	//推板将物料3推至最右侧
-	motorTurn(motors.motor3_TuiBan,rev);
-	osDelay(1000);
+	motorTurn(motors.motor3_TuiBanChuiZhi,on);//推板两个垂直气缸下行
+	while(getTuiBanPosition()!=open);//下行到位前一直等待
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);//停止推板垂直汽缸下行
 	
-//step2_4://物料4
-	//伸缩机推出以及返回
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,on);
-	//注意:这里应当修改判断条件判断是否已经到达条件,此处假定运行2秒为伸缩机推料所需时间
-	osDelay(2000);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,off);
-	motorTurn(motors.motor5_TuiLiaoShenSuoJi,rev);
-	osDelay(2000);
+	motorTurn(motors.motor6_DaiDaoGan,on);//带导杆气缸前行
+	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	motorTurn(motors.motor6_DaiDaoGan,off);//停止带导杆气缸前行
 	
-//step3://判断是否码够N层,不够时返回step2,码下一层
-	if(state.height<MaxHeight)
+	//M11 main:
+	motorTurn(motors.motor9_WuGan,on);//无杆气缸左行，料至1处
+	while(!HasArrivedAtB());//B传感器检测位置推板
+	motorTurn(motors.motor9_WuGan,off);//先停
+	motorTurn(motors.motor9_WuGan,rev);//再反转,无杆汽缸右行,返回
+	while(!HasArrivedAtD());//D传感器检测位置推板,等待返回初始位置
+	motorTurn(motors.motor9_WuGan,off);
+	//END M11
+	
+	//这里是按照红字修正后的
+	motorTurn(motors.motor6_DaiDaoGan,rev);//带导杆气缸退回原位
+	while(getDaiDaoGanPosition()!=close);
+	motorTurn(motors.motor6_DaiDaoGan,off);
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,rev);//推板气缸上行归位
+	while(getTuiBanPosition()!=close);
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);
+	//end
+	
+	//M12
+	while(!HasArrivedAtExtremePosition());//传感器检测料到达动力滚筒极限位置,达到极限位置前一直等待
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,on);//推板两个垂直气缸下行
+	while(getTuiBanPosition()!=open);//下行到位前一直等待
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);//停止推板垂直汽缸下行
+	
+	motorTurn(motors.motor6_DaiDaoGan,on);//带导杆气缸前行
+	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	motorTurn(motors.motor6_DaiDaoGan,off);//停止带导杆气缸前行
+	
+	//M12 main:
+	motorTurn(motors.motor9_WuGan,on);//无杆气缸左行，料至2处
+	while(!HasArrivedAtC());//C传感器检测位置推板
+	motorTurn(motors.motor9_WuGan,off);//先停
+	motorTurn(motors.motor9_WuGan,rev);//再反转,无杆汽缸右行,返回
+	while(!HasArrivedAtD());//D传感器检测位置推板,等待返回初始位置
+	motorTurn(motors.motor9_WuGan,off);
+	//END M12
+	
+	//这里是按照红字修正后的
+	motorTurn(motors.motor6_DaiDaoGan,rev);//带导杆气缸退回原位
+	while(getDaiDaoGanPosition()!=close);
+	motorTurn(motors.motor6_DaiDaoGan,off);
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,rev);//推板气缸上行归位
+	while(getTuiBanPosition()!=close);
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);
+	//end
+	
+	//M13
+	while(!HasArrivedAtExtremePosition());//传感器检测料到达动力滚筒极限位置,达到极限位置前一直等待
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,on);//推板两个垂直气缸下行
+	while(getTuiBanPosition()!=open);//下行到位前一直等待
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);//停止推板垂直汽缸下行
+	
+	motorTurn(motors.motor6_DaiDaoGan,on);//带导杆气缸前行
+	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	motorTurn(motors.motor6_DaiDaoGan,off);//停止带导杆气缸前行
+	
+	//M13 main:
+	motorTurn(motors.motor9_WuGan,on);//无杆气缸左行，料至4处
+	while(!HasArrivedAtE());//C传感器检测位置推板
+	motorTurn(motors.motor9_WuGan,off);//先停
+	motorTurn(motors.motor9_WuGan,rev);//再反转,无杆汽缸右行,返回
+	while(!HasArrivedAtD());//D传感器检测位置推板,等待返回初始位置
+	motorTurn(motors.motor9_WuGan,off);
+	//END M13
+	
+	//这里是按照红字修正后的
+	motorTurn(motors.motor6_DaiDaoGan,rev);//带导杆气缸退回原位
+	while(getDaiDaoGanPosition()!=close);
+	motorTurn(motors.motor6_DaiDaoGan,off);
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,rev);//推板气缸上行归位
+	while(getTuiBanPosition()!=close);
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);
+	//end
+	
+	
+	//M14
+	while(!HasArrivedAtExtremePosition());//传感器检测料到达动力滚筒极限位置,达到极限位置前一直等待
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,on);//推板两个垂直气缸下行
+	while(getTuiBanPosition()!=open);//下行到位前一直等待
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);//停止推板垂直汽缸下行
+	
+	motorTurn(motors.motor6_DaiDaoGan,on);//带导杆气缸前行
+	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	motorTurn(motors.motor6_DaiDaoGan,off);//停止带导杆气缸前行
+	
+	//M14 main:
+	state.count+=4;//计数器计四个数
+	//END M14
+	
+	//这里是按照红字修正后的
+	motorTurn(motors.motor6_DaiDaoGan,rev);//带导杆气缸退回原位
+	while(getDaiDaoGanPosition()!=close);
+	motorTurn(motors.motor6_DaiDaoGan,off);
+	
+	motorTurn(motors.motor3_TuiBanChuiZhi,rev);//推板气缸上行归位
+	while(getTuiBanPosition()!=close);
+	motorTurn(motors.motor3_TuiBanChuiZhi,off);
+	//end
+	
+	motorTurn(motors.motor8_ChuanSongDai,off);//传送带停止
+	
+	//step3://step3
+	motorTurn(motors.motor2_DangLiaoBanChuiZhi,on);//挡料板下行
+	while(getDangLiaoBanChuiZhiPosition()!=open);//等待挡料板下行到位
+	motorTurn(motors.motor2_DangLiaoBanChuiZhi,off);//停止挡料板下行
+	
+	if(state.height<0)//当1-6层时,编码器计数（下行960mm）
+	{
+		motorTurn(motors.motor1_JuanYangJi,on);//卷扬机下行
+		distanceBuf=Encoder1GetDistance(D_JuanYangJi);//获得当前编码器距离读数并暂存
+		while(distanceBuf-Encoder1GetDistance(D_JuanYangJi)<ItemHeight);//当移动的距离小于960(一个物料高)时等待
+	}
+	else if(state.height==0)//第7层时,下行50mm
+	{
+		motorTurn(motors.motor1_JuanYangJi,on);//卷扬机下行
+		distanceBuf=Encoder1GetDistance(D_JuanYangJi);//获得当前编码器距离读数并暂存
+		while(distanceBuf-Encoder1GetDistance(D_JuanYangJi)<50);//当移动的距离小于50时等待
+	}
+	else if(state.height>0 && state.height<8)//上行100,150,200,250,300,350mm,50+state.height*50
+	{
+		motorTurn(motors.motor1_JuanYangJi,rev);//卷扬机上行
+		distanceBuf=Encoder1GetDistance(D_JuanYangJi);//获得当前编码器距离读数并暂存
+		while(distanceBuf-Encoder1GetDistance(D_JuanYangJi)<50+state.height*50);//当移动的距离小于50+state.height*50时等待
+	}
+	else ;
+	motorTurn(motors.motor1_JuanYangJi,off);//卷扬机停
+	
+	motorTurn(motors.motor5_DangLiaoBanTuiChu,on);//挡料板推出气缸伸出
+	
+	motorTurn(motors.motory,rev);//伸缩机电机反转，小车后退
+	distanceBuf=Encoder2GetDistance(D_ShenSuoJiDianJi);//获得当前编码器距离读数并暂存
+	while(distanceBuf-Encoder2GetDistance(D_ShenSuoJiDianJi)<ItemLength);//等待后退到位（编码器计数退910mm）
+	motorTurn(motors.motory,off);//伸缩机电机停,小车停止
+	
+	while(getDangLiaoBanTuiChuPosition()!=open);//等待推出到位
+	motorTurn(motors.motor5_DangLiaoBanTuiChu,off);//推出到位,停止挡料板推出
+	
+	motorTurn(motors.motor1_JuanYangJi,rev);//卷扬机工作，卸料盘上升
+	
+	motorTurn(motors.motor2_DangLiaoBanChuiZhi,rev);//挡料板复位(上行)//注:无法做到快速
+	while(getDangLiaoBanChuiZhiPosition()!=open);//等待挡料板上行到位
+	motorTurn(motors.motor2_DangLiaoBanChuiZhi,off);//停止挡料板上行
+	
+	motorTurn(motors.motor5_DangLiaoBanTuiChu,rev);//挡料板推出气缸缩回
+	while(getDangLiaoBanTuiChuPosition()!=close);//等待缩回到位
+	motorTurn(motors.motor5_DangLiaoBanTuiChu,off);//缩回到位,停止挡料板缩回
+	
+	osDelay(10000);//延时10秒
+	
+	motorTurn(motors.motory,on);//伸缩机电机正转，前行910mm
+	distanceBuf=Encoder2GetDistance(D_ShenSuoJiDianJi);//获得当前编码器距离读数并暂存
+	while(distanceBuf-Encoder2GetDistance(D_ShenSuoJiDianJi)<ItemLength);//等待前行到位（编码器计数进910mm）
+	motorTurn(motors.motory,off);//伸缩机电机停,小车停止
+	
+	
+	if(state.height<0)//当1-7层时,编码器计数（上行960mm）
+	{
+		motorTurn(motors.motor1_JuanYangJi,rev);//卷扬机上行
+		distanceBuf=Encoder1GetDistance(D_JuanYangJi);//获得当前编码器距离读数并暂存
+		while(Encoder1GetDistance(D_JuanYangJi)-distanceBuf<ItemHeight);//当移动的距离小于960(一个物料高)时等待
+	}
+	else if(state.height==0)
+	{
+		motorTurn(motors.motor1_JuanYangJi,rev);//卷扬机上行
+		distanceBuf=Encoder1GetDistance(D_JuanYangJi);//获得当前编码器距离读数并暂存
+		while(Encoder1GetDistance(D_JuanYangJi)-distanceBuf<50);//当移动的距离小于50时等待
+	} 
+	else if(state.height>0 && state.height<8)
+	{
+		motorTurn(motors.motor1_JuanYangJi,on);//卷扬机下行
+		distanceBuf=Encoder1GetDistance(D_JuanYangJi);//获得当前编码器距离读数并暂存
+		while(distanceBuf-Encoder1GetDistance(D_JuanYangJi)<50+state.height*50);//当移动的距离小于50+state.height*50时等待
+	
+	}
+	motorTurn(motors.motor1_JuanYangJi,off);//卷扬机停
+	
+	//step4://step4重复上述步骤
+	if(state.height<MaxHeight)//小于14层时,返回step2,码下一层
 	{
 		state.height++;
 		goto step2;
 	}
-//step4://判断是否码够M列,不够时返回step3,码下一列(即判断是否码完整个集装箱)
-	//松开贴壁装置
-		motorTurn(motors.motor0_TieBiZhuangZhi,rev);
-		osDelay(1000);
-		motorTurn(motors.motor0_TieBiZhuangZhi,off);
-	if(state.column<MaxColumn)
+	//step5://重复
+	if(state.column<MaxColumn)//小于最大码的列数时,返回step2,码下一列
 	{
-		//机器在y方向后退一个单位(向集装箱外移动一个单位)
-		motorTurn(motors.motory,rev);
-		osDelay(1000);
-		motorTurn(motors.motory,off);
-		
 		state.column++;
+		state.height=0;
 		goto step2;
 	}
 	
@@ -151,17 +296,19 @@ void thread_serial_send(void *p)
 	sprintf(msg,"%s%d ",msg,state->runningFlagy);
 	sprintf(msg,"%s%d ",msg,state->runningFlag0_TieBiZhuangZhi);
 	sprintf(msg,"%s%d ",msg,state->runningFlag1_JuanYangJi);
-	sprintf(msg,"%s%d ",msg,state->runningFlag2_DangLiaoBan);
-	sprintf(msg,"%s%u ",msg,state->runningFlag3_TuiBan);
+	sprintf(msg,"%s%d ",msg,state->runningFlag2_DangLiaoBanChuiZhi);
+	sprintf(msg,"%s%u ",msg,state->runningFlag3_TuiBanChuiZhi);
 	sprintf(msg,"%s%d ",msg,state->runningFlag4_CeDangBan);
-	sprintf(msg,"%s%d ",msg,state->runningFlag5_TuiLiaoShenSuoJi);
-	sprintf(msg,"%s%d ",msg,state->postionFlag0_TieBiZhuangZhi);
-	sprintf(msg,"%s%d ",msg,state->postionFlag1_JuanYangJi);
-	sprintf(msg,"%s%d ",msg,state->postionFlag2_DangLiaoBan);
-	sprintf(msg,"%s%u ",msg,state->postionFlag3_TuiBan);
-	sprintf(msg,"%s%d ",msg,state->postionFlag4_CeDangBan);
-	sprintf(msg,"%s%d ",msg,state->postionFlag5_TuiLiaoShenSuoJi);
-	sprintf(msg,"%s%u ",msg,state->num);
+	sprintf(msg,"%s%d ",msg,state->runningFlag5_DangLiaoBanTuiChu);
+	sprintf(msg,"%s%d ",msg,state->runningFlag6_DaiDaoGan);
+	sprintf(msg,"%s%d ",msg,state->runningFlag7_DongLiGunTong);
+	sprintf(msg,"%s%d ",msg,state->positionFlag0_TieBiZhuangZhi);
+	sprintf(msg,"%s%d ",msg,state->positionFlag1_JuanYangJi);
+	sprintf(msg,"%s%d ",msg,state->positionFlag2_DangLiaoBanChuiZhi);
+	sprintf(msg,"%s%u ",msg,state->positionFlag3_TuiBanChuiZhi);
+	sprintf(msg,"%s%d ",msg,state->positionFlag4_CeDangBan);
+	sprintf(msg,"%s%d ",msg,state->positionFlag5_TuiLiaoShenSuoJi);
+	sprintf(msg,"%s%u ",msg,state->c);
 	sprintf(msg,"%s%d ",msg,state->height);
 	sprintf(msg,"%s%u ",msg,state->column);
 	sprintf(msg,"%s%u ",msg,state->localStep);
@@ -267,7 +414,7 @@ void thread_turnOnMotor(void *p)
 	setStateRunFlag(motorPointer->id,off);
 	setStatePosFlag(motorPointer->id,open);
 #ifdef _DEBUG
-	sprintf(s,"motor%d turn off,postion open\n",motorPointer->id);
+	sprintf(s,"motor%d turn off,position open\n",motorPointer->id);
 	SerialPrintf(s);
 #endif
 		osThreadExit();
@@ -296,23 +443,26 @@ void setStateRunFlag(int id,motorStatus flag)
 	{
 		case 0:state.runningFlag0_TieBiZhuangZhi=flag;break;
 		case 1:state.runningFlag1_JuanYangJi=flag;break;
-		case 2:state.runningFlag2_DangLiaoBan=flag;break;
-		case 3:state.runningFlag3_TuiBan=flag;break;
+		case 2:state.runningFlag2_DangLiaoBanChuiZhi=flag;break;
+		case 3:state.runningFlag3_TuiBanChuiZhi=flag;break;
 		case 4:state.runningFlag4_CeDangBan=flag;break;
-		case 5:state.runningFlag5_TuiLiaoShenSuoJi=flag;break;
+		case 5:state.runningFlag5_DangLiaoBanTuiChu=flag;break;
+		case 6:state.runningFlag6_DaiDaoGan=flag;break;
+		case 7:state.runningFlag7_DongLiGunTong=flag;break;
+		case -1:state.runningFlagy=flag;break;
 		default:;
 	}
 }
-void setStatePosFlag(int id,postionStatus flag)
+void setStatePosFlag(int id,positionStatus flag)
 {
 	switch(id)
 	{
-		case 0:state.postionFlag0_TieBiZhuangZhi=flag;break;
-		case 1:state.postionFlag1_JuanYangJi=flag;break;
-		case 2:state.postionFlag2_DangLiaoBan=flag;break;
-		case 3:state.postionFlag3_TuiBan=flag;break;
-		case 4:state.postionFlag4_CeDangBan=flag;break;
-		case 5:state.postionFlag5_TuiLiaoShenSuoJi=flag;break;
+		case 0:state.positionFlag0_TieBiZhuangZhi=flag;break;
+		case 1:state.positionFlag1_JuanYangJi=flag;break;
+		case 2:state.positionFlag2_DangLiaoBanChuiZhi=flag;break;
+		case 3:state.positionFlag3_TuiBanChuiZhi=flag;break;
+		case 4:state.positionFlag4_CeDangBan=flag;break;
+		case 5:state.positionFlag5_TuiLiaoShenSuoJi=flag;break;
 		default:;
 	}
 }

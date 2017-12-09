@@ -22,13 +22,168 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 F:\Github\ARM\arm\src\arm_OS.uvprojx
-Project File Date:  12/06/2017
+Project File Date:  12/08/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\tools\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
 compiling main.c...
+main\../main/config.h(7): warning:  #1295-D: Deprecated declaration HasEnteredBox - give arg types
+  
+ool HasEnteredBox();//光电传感器返回是否已经进箱子
+main\../main/config.h(8): warning:  #1295-D: Deprecated declaration HasItems - give arg types
+  
+ool HasItems();//检查动力滚筒上是否有料
+main\../main/config.h(9): warning:  #1295-D: Deprecated declaration HasArrivedAtExtremePosition - give arg types
+  
+ool HasArrivedAtExtremePosition();//检测料到达动力滚筒极限位置
+main\../main/config.h(10): warning:  #1295-D: Deprecated declaration HasArrivedAtB - give arg types
+  
+ool HasArrivedAtB();//B传感器检测位置推�?
+main\../main/config.h(11): warning:  #1295-D: Deprecated declaration HasArrivedAtC - give arg types
+  
+ool HasArrivedAtC();
+main\../main/config.h(12): warning:  #1295-D: Deprecated declaration HasArrivedAtD - give arg types
+  
+ool HasArrivedAtD();
+main\../main/config.h(13): warning:  #1295-D: Deprecated declaration HasArrivedAtE - give arg types
+  
+ool HasArrivedAtE();
+main\../main/config.h(15): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getTieBiPosition();//返回贴壁汽缸的汽缸电磁传感器�?
+main\../main/config.h(15): warning:  #1295-D: Deprecated declaration getTieBiPosition - give arg types
+  positionStatus getTieBiPosition();//返回贴壁汽缸的汽缸电磁传感器�?
+main\../main/config.h(16): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getCeDangBanPosition();//返回侧挡板汽缸的汽缸电磁传感器�?
+main\../main/config.h(16): warning:  #1295-D: Deprecated declaration getCeDangBanPosition - give arg types
+  positionStatus getCeDangBanPosition();//返回侧挡板汽缸的汽缸电磁传感器�?
+main\../main/config.h(17): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getTuiBanPosition();//返回推板垂直汽缸的汽缸电磁传感器�?
+main\../main/config.h(17): warning:  #1295-D: Deprecated declaration getTuiBanPosition - give arg types
+  positionStatus getTuiBanPosition();//返回推板垂直汽缸的汽缸电磁传感器�?
+main\../main/config.h(18): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDaiDaoGanPosition();//返回带导杆汽缸的汽缸电磁传感器�?
+main\../main/config.h(18): warning:  #1295-D: Deprecated declaration getDaiDaoGanPosition - give arg types
+  positionStatus getDaiDaoGanPosition();//返回带导杆汽缸的汽缸电磁传感器�?
+main\../main/config.h(19): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDangLiaoBanPosition();//返回挡料板汽缸的汽缸电磁传感器�?
+main\../main/config.h(19): warning:  #1295-D: Deprecated declaration getDangLiaoBanPosition - give arg types
+  positionStatus getDangLiaoBanPosition();//返回挡料板汽缸的汽缸电磁传感器�?
+main\../main/config.h(20): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDangLiaoBanTuiChuPosition();//返回挡料板推出气缸的汽缸电磁传感器�?
+main\../main/config.h(20): warning:  #1295-D: Deprecated declaration getDangLiaoBanTuiChuPosition - give arg types
+  positionStatus getDangLiaoBanTuiChuPosition();//返回挡料板推出气缸的汽缸电磁传感器�?
+main\../main/config.h(22): warning:  #1295-D: Deprecated declaration motor0_TieBi_stopFunc - give arg types
+  void motor0_TieBi_stopFunc();
+main\main.c(130): error:  #136: struct "<unnamed>"  has no field "num"
+        flags->num=0;
+main\main.c(133): error:  #136: struct "<unnamed>"  has no field "localStep"
+        flags->localStep=0;
+main\main.c: 14 warnings, 8 errors
+compiling stopFuncs.c...
+main\config.h(7): warning:  #1295-D: Deprecated declaration HasEnteredBox - give arg types
+  
+ool HasEnteredBox();//光电传感器返回是否已经进箱子
+main\config.h(8): warning:  #1295-D: Deprecated declaration HasItems - give arg types
+  
+ool HasItems();//检查动力滚筒上是否有料
+main\config.h(9): warning:  #1295-D: Deprecated declaration HasArrivedAtExtremePosition - give arg types
+  
+ool HasArrivedAtExtremePosition();//检测料到达动力滚筒极限位置
+main\config.h(10): warning:  #1295-D: Deprecated declaration HasArrivedAtB - give arg types
+  
+ool HasArrivedAtB();//B传感器检测位置推�?
+main\config.h(11): warning:  #1295-D: Deprecated declaration HasArrivedAtC - give arg types
+  
+ool HasArrivedAtC();
+main\config.h(12): warning:  #1295-D: Deprecated declaration HasArrivedAtD - give arg types
+  
+ool HasArrivedAtD();
+main\config.h(13): warning:  #1295-D: Deprecated declaration HasArrivedAtE - give arg types
+  
+ool HasArrivedAtE();
+main\config.h(15): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getTieBiPosition();//返回贴壁汽缸的汽缸电磁传感器�?
+main\config.h(15): warning:  #1295-D: Deprecated declaration getTieBiPosition - give arg types
+  positionStatus getTieBiPosition();//返回贴壁汽缸的汽缸电磁传感器�?
+main\config.h(16): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getCeDangBanPosition();//返回侧挡板汽缸的汽缸电磁传感器�?
+main\config.h(16): warning:  #1295-D: Deprecated declaration getCeDangBanPosition - give arg types
+  positionStatus getCeDangBanPosition();//返回侧挡板汽缸的汽缸电磁传感器�?
+main\config.h(17): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getTuiBanPosition();//返回推板垂直汽缸的汽缸电磁传感器�?
+main\config.h(17): warning:  #1295-D: Deprecated declaration getTuiBanPosition - give arg types
+  positionStatus getTuiBanPosition();//返回推板垂直汽缸的汽缸电磁传感器�?
+main\config.h(18): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDaiDaoGanPosition();//返回带导杆汽缸的汽缸电磁传感器�?
+main\config.h(18): warning:  #1295-D: Deprecated declaration getDaiDaoGanPosition - give arg types
+  positionStatus getDaiDaoGanPosition();//返回带导杆汽缸的汽缸电磁传感器�?
+main\config.h(19): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDangLiaoBanPosition();//返回挡料板汽缸的汽缸电磁传感器�?
+main\config.h(19): warning:  #1295-D: Deprecated declaration getDangLiaoBanPosition - give arg types
+  positionStatus getDangLiaoBanPosition();//返回挡料板汽缸的汽缸电磁传感器�?
+main\config.h(20): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDangLiaoBanTuiChuPosition();//返回挡料板推出气缸的汽缸电磁传感器�?
+main\config.h(20): warning:  #1295-D: Deprecated declaration getDangLiaoBanTuiChuPosition - give arg types
+  positionStatus getDangLiaoBanTuiChuPosition();//返回挡料板推出气缸的汽缸电磁传感器�?
+main\config.h(22): warning:  #1295-D: Deprecated declaration motor0_TieBi_stopFunc - give arg types
+  void motor0_TieBi_stopFunc();
+main\stopFuncs.c: 14 warnings, 6 errors
 compiling threads.c...
+threads\../threads/../main/../main/config.h(7): warning:  #1295-D: Deprecated declaration HasEnteredBox - give arg types
+  
+ool HasEnteredBox();//光电传感器返回是否已经进箱子
+threads\../threads/../main/../main/config.h(8): warning:  #1295-D: Deprecated declaration HasItems - give arg types
+  
+ool HasItems();//检查动力滚筒上是否有料
+threads\../threads/../main/../main/config.h(9): warning:  #1295-D: Deprecated declaration HasArrivedAtExtremePosition - give arg types
+  
+ool HasArrivedAtExtremePosition();//检测料到达动力滚筒极限位置
+threads\../threads/../main/../main/config.h(10): warning:  #1295-D: Deprecated declaration HasArrivedAtB - give arg types
+  
+ool HasArrivedAtB();//B传感器检测位置推�?
+threads\../threads/../main/../main/config.h(11): warning:  #1295-D: Deprecated declaration HasArrivedAtC - give arg types
+  
+ool HasArrivedAtC();
+threads\../threads/../main/../main/config.h(12): warning:  #1295-D: Deprecated declaration HasArrivedAtD - give arg types
+  
+ool HasArrivedAtD();
+threads\../threads/../main/../main/config.h(13): warning:  #1295-D: Deprecated declaration HasArrivedAtE - give arg types
+  
+ool HasArrivedAtE();
+threads\../threads/../main/../main/config.h(15): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getTieBiPosition();//返回贴壁汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(15): warning:  #1295-D: Deprecated declaration getTieBiPosition - give arg types
+  positionStatus getTieBiPosition();//返回贴壁汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(16): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getCeDangBanPosition();//返回侧挡板汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(16): warning:  #1295-D: Deprecated declaration getCeDangBanPosition - give arg types
+  positionStatus getCeDangBanPosition();//返回侧挡板汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(17): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getTuiBanPosition();//返回推板垂直汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(17): warning:  #1295-D: Deprecated declaration getTuiBanPosition - give arg types
+  positionStatus getTuiBanPosition();//返回推板垂直汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(18): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDaiDaoGanPosition();//返回带导杆汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(18): warning:  #1295-D: Deprecated declaration getDaiDaoGanPosition - give arg types
+  positionStatus getDaiDaoGanPosition();//返回带导杆汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(19): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDangLiaoBanPosition();//返回挡料板汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(19): warning:  #1295-D: Deprecated declaration getDangLiaoBanPosition - give arg types
+  positionStatus getDangLiaoBanPosition();//返回挡料板汽缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(20): error:  #20: identifier "positionStatus" is undefined
+  positionStatus getDangLiaoBanTuiChuPosition();//返回挡料板推出气缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(20): warning:  #1295-D: Deprecated declaration getDangLiaoBanTuiChuPosition - give arg types
+  positionStatus getDangLiaoBanTuiChuPosition();//返回挡料板推出气缸的汽缸电磁传感器�?
+threads\../threads/../main/../main/config.h(22): warning:  #1295-D: Deprecated declaration motor0_TieBi_stopFunc - give arg types
+  void motor0_TieBi_stopFunc();
+threads\threads.c(71): warning:  #177-D: label "step2"  was declared but never referenced
+        step2://装料
+threads\threads.c(247): error:  #136: struct "<unnamed>"  has no field "c"
+        sprintf(msg,"%s%u ",msg,state->c);
+threads\threads.c(250): error:  #136: struct "<unnamed>"  has no field "localStep"
+        sprintf(msg,"%s%u ",msg,state->localStep);
+threads\threads.c: 15 warnings, 8 errors
 compiling encoder.c...
 compiling serial.c...
 compiling cmds.c...
@@ -45,9 +200,7 @@ compiling stm32f10x_tim.c...
 compiling stm32f10x_usart.c...
 assembling startup_stm32f10x_hd.s...
 compiling system_stm32f10x.c...
-linking...
-Program Size: Code=12416 RO-data=916 RW-data=8160 ZI-data=2744  
-".\Objects\arm_OS.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\arm_OS.axf" - 22 Error(s), 43 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -148,7 +301,8 @@ Package Vendor: Keil
       Include file:  CMSIS\RTOS2\Include\cmsis_os2.h
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Build Time Elapsed:  00:00:10
+Target not created.
+Build Time Elapsed:  00:00:11
 </pre>
 </body>
 </html>
