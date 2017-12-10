@@ -390,16 +390,6 @@
               <FileType>1</FileType>
               <FilePath>.\main\main.c</FilePath>
             </File>
-            <File>
-              <FileName>config.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\main\config.h</FilePath>
-            </File>
-            <File>
-              <FileName>stopFuncs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main\stopFuncs.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -448,21 +438,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>cmds</GroupName>
-          <Files>
-            <File>
-              <FileName>cmds.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\cmds\cmds.h</FilePath>
-            </File>
-            <File>
-              <FileName>cmds.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\cmds\cmds.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>motor</GroupName>
           <Files>
             <File>
@@ -478,7 +453,24 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>New Group</GroupName>
+          <GroupName>config</GroupName>
+          <Files>
+            <File>
+              <FileName>config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\config\config.h</FilePath>
+            </File>
+            <File>
+              <FileName>sensors.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\config\sensors.c</FilePath>
+            </File>
+            <File>
+              <FileName>stopFuncs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\config\stopFuncs.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>

@@ -1,6 +1,6 @@
 Dependencies for Project 'arm_OS', Target 'Target 1': (DO NOT MODIFY !)
-F (.\main\defines.h)(0x5A2A8740)()
-F (.\main\main.c)(0x5A2A8740)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main\defines.h)(0x5A2C8B02)()
+F (.\main\main.c)(0x5A2C9709)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
 I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -20,35 +20,14 @@ I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1\cmsis_os.h
 I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include\cmsis_os2.h)(0x58984990)
 I (D:\tools\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include\rtx_os.h)(0x58984990)
-I (main\defines.h)(0x5A2A8740)
+I (main\defines.h)(0x5A2C8B02)
 I (D:\tools\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
-I (main\../motor/motor.h)(0x5A23BEEC)
-I (main\../main/config.h)(0x5A2A8740)
-I (main\../threads/threads.h)(0x5A2A8740)
+I (main\../motor/motor.h)(0x5A2C85E1)
+I (main\../threads/threads.h)(0x5A2C9758)
 I (main\../serial/serial.h)(0x59FC6961)
-I (main\../encoder/encoder.h)(0x5A294AFA)
-F (.\main\config.h)(0x5A2A8740)()
-F (.\main\stopFuncs.c)(0x5A29EC15)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\stopfuncs.o --omf_browse .\objects\stopfuncs.crf --depend .\objects\stopfuncs.d)
-I (main\config.h)(0x5A2A8740)
-I (D:\tools\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
-I (main\defines.h)(0x5A2A8740)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
-I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
-I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
-I (D:\tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5898498A)
-I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5898498A)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\system_stm32f10x.h)(0x4F1E2E3C)
-I (.\RTE\Device\STM32F103ZE\stm32f10x_conf.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_exti.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_fsmc.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_gpio.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_rcc.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x53B66212)
-I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\misc.h)(0x53B66212)
-I (main\../motor/motor.h)(0x5A23BEEC)
-F (.\threads\threads.c)(0x5A2A8740)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\threads.o --omf_browse .\objects\threads.crf --depend .\objects\threads.d)
+I (main\../encoder/encoder.h)(0x5A2B8DB4)
+I (main\../config/config.h)(0x5A2C8DA6)
+F (.\threads\threads.c)(0x5A2CAF5C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\threads.o --omf_browse .\objects\threads.crf --depend .\objects\threads.d)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
 I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -70,15 +49,15 @@ I (D:\tools\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include\rtx_os.h)(0x58984990)
 I (D:\tools\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (D:\tools\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
-I (threads\../threads/threads.h)(0x5A2A8740)
-I (threads\../threads/../main/defines.h)(0x5A2A8740)
+I (threads\../threads/threads.h)(0x5A2C9758)
+I (threads\../threads/../main/defines.h)(0x5A2C8B02)
 I (D:\tools\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
-I (threads\../threads/../main/../motor/motor.h)(0x5A23BEEC)
-I (threads\../threads/../main/../main/config.h)(0x5A2A8740)
+I (threads\../threads/../main/../motor/motor.h)(0x5A2C85E1)
+I (threads\../config/config.h)(0x5A2C8DA6)
 I (threads\../serial/serial.h)(0x59FC6961)
-I (threads\../encoder/encoder.h)(0x5A294AFA)
-F (.\threads\threads.h)(0x5A2A8740)()
-F (.\encoder\encoder.c)(0x5A2945D6)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
+I (threads\../encoder/encoder.h)(0x5A2B8DB4)
+F (.\threads\threads.h)(0x5A2C9758)()
+F (.\encoder\encoder.c)(0x5A2C89B3)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
 I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
@@ -94,8 +73,8 @@ I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\in
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x53B66212)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x53B66212)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\misc.h)(0x53B66212)
-I (encoder\encoder.h)(0x5A294AFA)
-F (.\encoder\encoder.h)(0x5A294AFA)()
+I (encoder\encoder.h)(0x5A2B8DB4)
+F (.\encoder\encoder.h)(0x5A2B8DB4)()
 F (.\serial\serial.c)(0x5A1A109B)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\serial.o --omf_browse .\objects\serial.crf --depend .\objects\serial.d)
 I (serial\serial.h)(0x59FC6961)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
@@ -114,11 +93,8 @@ I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\in
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x53B66212)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\misc.h)(0x53B66212)
 F (.\serial\serial.h)(0x59FC6961)()
-F (.\cmds\cmds.h)(0x5A27A472)()
-F (.\cmds\cmds.c)(0x5A27BF08)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\cmds.o --omf_browse .\objects\cmds.crf --depend .\objects\cmds.d)
-I (cmds\cmds.h)(0x5A27A472)
-F (.\motor\motor.c)(0x5A2232AB)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
-I (motor\motor.h)(0x5A23BEEC)
+F (.\motor\motor.c)(0x5A2C9B00)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\motor.o --omf_browse .\objects\motor.crf --depend .\objects\motor.d)
+I (motor\motor.h)(0x5A2C85E1)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_gpio.h)(0x53B66212)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
 I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
@@ -134,7 +110,58 @@ I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\in
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x53B66212)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x53B66212)
 I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\misc.h)(0x53B66212)
-F (.\motor\motor.h)(0x5A23BEEC)()
+I (motor\../config/config.h)(0x5A2C8DA6)
+I (motor\../config/../main/defines.h)(0x5A2C8B02)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (motor\../threads/threads.h)(0x5A2C9758)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1\cmsis_os.h)(0x58984990)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include\cmsis_os2.h)(0x58984990)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include\rtx_os.h)(0x58984990)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
+F (.\motor\motor.h)(0x5A2C85E1)()
+F (.\config\config.h)(0x5A2C8DA6)()
+F (.\config\sensors.c)(0x5A2B8B35)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\sensors.o --omf_browse .\objects\sensors.crf --depend .\objects\sensors.d)
+I (config\config.h)(0x5A2C8DA6)
+I (config\../main/defines.h)(0x5A2C8B02)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5898498A)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5898498A)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\system_stm32f10x.h)(0x4F1E2E3C)
+I (.\RTE\Device\STM32F103ZE\stm32f10x_conf.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_exti.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_fsmc.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_gpio.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_rcc.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\misc.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (config\../main/../motor/motor.h)(0x5A2C85E1)
+F (.\config\stopFuncs.c)(0x5A2B8BBF)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\stopfuncs.o --omf_browse .\objects\stopfuncs.crf --depend .\objects\stopfuncs.d)
+I (config\config.h)(0x5A2C8DA6)
+I (config\../main/defines.h)(0x5A2C8B02)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\stm32f10x.h)(0x53BA0D60)
+I (.\RTE\_Target_1\RTE_Components.h)(0x5A27C7DA)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h)(0x5898498A)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h)(0x5898498A)
+I (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h)(0x5898498A)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include\system_stm32f10x.h)(0x4F1E2E3C)
+I (.\RTE\Device\STM32F103ZE\stm32f10x_conf.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_exti.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_fsmc.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_gpio.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_rcc.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc\misc.h)(0x53B66212)
+I (D:\tools\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (config\../main/../motor/motor.h)(0x5A2C85E1)
 F (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Library\ARM\RTX_CM3.lib)(0x58984990)()
 F (D:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Library\cmsis_os1.c)(0x58984992)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I.\RTE\CMSIS-I.\RTE\Device\STM32F103ZE-I.\RTE\_Target_1-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include-ID:\tools\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS2\RTX\Include1-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include-ID:\tools\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\StdPeriph_Driver\inc-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD-o .\objects\cmsis_os1.o --omf_browse .\objects\cmsis_os1.crf --depend .\objects\cmsis_os1.d)
 I (D:\tools\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)

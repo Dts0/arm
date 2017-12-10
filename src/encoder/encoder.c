@@ -4,8 +4,40 @@
 #include "stm32f10x_exti.h"             // Keil::Device:StdPeriph Drivers:EXTI
 
 static volatile int turn1=0;
+static volatile int turn2=0;
 
 void Encoder1Init()
+{
+	
+}
+uint32_t Encoder1GetCount(void)//获得计数数
+{
+	return 0;
+}
+uint32_t Encoder1GetDeg(void)//获得当前位置的度数,保留到整数
+{
+	return 0;
+}
+int Encoder1GetTurn(void)//获得圈数
+{
+	return turn1;
+}
+void Encoder1SetTurn(int turn)//设置圈数
+{
+	turn1=turn;
+}
+void Encoder1SetCount(int count)//设置计数
+{
+	int count0;
+	count0++;//单纯不喜欢看到warning,为了消除warning
+	count0=count;
+}
+int Encoder1GetDistance(int d)//获得距离
+{
+	return (int)(turn1*3.14*d+3.14*d*Encoder1GetDeg()/360);
+}
+
+void Encoder2Init()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 		//NVIC
@@ -87,29 +119,29 @@ void Encoder1Init()
 }
 
 
-uint32_t Encoder1GetCount(void)
+uint32_t Encoder2GetCount(void)
 {
 	return ((TIM4->CNT)/4);
 }
-uint32_t Encoder1GetDeg(void)
+uint32_t Encoder2GetDeg(void)
 {
 	return ((TIM4->CNT/4)*360/400);
 }
-int Encoder1GetTurn(void)
+int Encoder2GetTurn(void)
 {
-	return turn1;
+	return turn2;
 }
-void Encoder1SetTurn(int turn)
+void Encoder2SetTurn(int turn)
 {
-	turn1=turn;
+	turn2=turn;
 }
-void Encoder1SetCount(int count)
+void Encoder2SetCount(int count)
 {
 	TIM4->CNT=count*4;
 }
-int Encoder1GetDistance(int d)
+int Encoder2GetDistance(int d)
 {
-	return (int)(turn1*3.14*d+3.14*d*Encoder1GetCount()/400);
+	return (int)(turn2*3.14*d+3.14*d*Encoder2GetCount()/400);
 }
 
 void EXTI1_IRQHandler(void)

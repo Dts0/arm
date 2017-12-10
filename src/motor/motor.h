@@ -26,4 +26,8 @@ void motorInit(motor *motorPointer);//指定电机的初始化
 **/
 void motorTurn(motor *motorPointer,motorStatus status);//设置电机正转,反转或停止
 
+void _setStateRunFlag(int id,motorStatus flag);
+void _CLK_ENABLE_GPIO(GPIO_TypeDef* GPIOx);
+
+
 #endif
