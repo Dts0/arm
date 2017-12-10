@@ -9,6 +9,7 @@
 #include "../config/config.h"
 #include "../serial/serial.h"
 #include "../encoder/encoder.h"
+#include "../cmds/cmds.h"
 
 extern sysState state;
 extern Motors motors;
@@ -95,7 +96,7 @@ os_serialPrintf("开始装料\n");
 #endif
 	//计数器为state.localM,记录正在装载的物料的编号1,2,3,4
 	motorTurn(motors.motor8_ChuanSongDai,on);//伸缩机传送带电机工作，开始输料
-	motorTurn(motors.motor7_DongLiGunTong,on);//动力滚筒开始运行
+//	motorTurn(motors.motor7_DongLiGunTong,on);//动力滚筒开始运行
 	
 	//M11:物料1
 	state.localM=1;
@@ -562,7 +563,7 @@ os_serialPrintf("卷扬机已下行到位\n");
 	#ifdef _DEBUG
 		os_serialPrintf("已码完集装箱");
 		#endif
-	motorTurn(motors.motor7_DongLiGunTong,off);//动力滚筒关闭
+	//motorTurn(motors.motor7_DongLiGunTong,off);//动力滚筒关闭
 	while(1);//整个集装箱码完,待命
 }
 void thread_serial_send(void *p)
@@ -585,8 +586,9 @@ void thread_serial_send(void *p)
 	sprintf(msg,"%s%d ",msg,state->runningFlag4_CeDangBan);
 	sprintf(msg,"%s%d ",msg,state->runningFlag5_DangLiaoBanTuiChu);
 	sprintf(msg,"%s%d ",msg,state->runningFlag6_DaiDaoGan);
-	sprintf(msg,"%s%d",msg,state->runningFlag7_DongLiGunTong);
-		
+	//sprintf(msg,"%s%d ",msg,state->runningFlag7_DongLiGunTong);
+	sprintf(msg,"%s%d ",msg,state->runningFlag8_ChuanSongDai);
+	sprintf(msg,"%s%d ",msg,state->runningFlag9_WuGan);
 	sprintf(msg,"%s%s",msg,_SEND_CHANGE_CHAR);
 	/*
 	sprintf(msg,"%s%d ",msg,state->positionFlag0_TieBiZhuangZhi);
@@ -622,8 +624,7 @@ void thread_serial_send(void *p)
 	}
 }
 
-const char* cmds[]={"STOP","RST","CONT","RSD"};
-//stop,reset,continue,resend
+extern char* cmds[];
 void thread_serial_receive(void *p)
 {
 #ifdef _DEBUG
@@ -635,32 +636,20 @@ void thread_serial_receive(void *p)
 		cmd = os_serialReceivedString(5);
 	if(strcmp(cmd,cmds[0])==0) 
 		{
-			if(state.flag_running==true) 
-			{
-				osMutexWait(uart_mutex_id, osWaitForever);
-				os_serialPrintf("OK,stop\n");
-				state.flag_running=false;
-			}
-			else os_serialPrintf("OK,but error\n");
+			cmdFunction0();
 		}
 	else if(strcmp(cmd,cmds[1])==0) 
 	{
-		os_serialPrintf("OK,reset\n");
-		NVIC_SystemReset();// 复位
+		cmdFunction1();
 	}
 	else if(strcmp(cmd,cmds[2])==0) 
 	{
-		if(state.flag_running==false) 
-		{
-			state.flag_running=true;
-			osMutexRelease(uart_mutex_id);
-			os_serialPrintf("OK,continue\n");}
-		else os_serialPrintf("OK,but error\n");
+		cmdFunction2();
 	}
 	else if(strcmp(cmd,cmds[3])==0)
 	{
-		os_serialPrintf(printfBuf);
-	} else os_serialPrintf("ERR,unknown cmd\n");
+		cmdFunction3();
+	} else cmdNotFind();
 		sprintf(cmd,"");
 	}
 }

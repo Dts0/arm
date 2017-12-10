@@ -131,13 +131,14 @@ void motorsConfig(Motors *ms)//电机配置
 	ms->motor6_DaiDaoGan->GPIO_Pin_x2=GPIO_Pin_15;
 	ms->motor6_DaiDaoGan->stopFunc=NULL;
 	motorInit(ms->motor6_DaiDaoGan);
-	
+/*	
 	ms->motor7_DongLiGunTong->id=7;
 	ms->motor7_DongLiGunTong->GPIOx=GPIOG;
 	ms->motor7_DongLiGunTong->GPIO_Pin_x1=GPIO_Pin_2;
 	ms->motor7_DongLiGunTong->GPIO_Pin_x2=GPIO_Pin_3;
 	ms->motor7_DongLiGunTong->stopFunc=NULL;
 	motorInit(ms->motor7_DongLiGunTong);
+*/
 	
 	ms->motor8_ChuanSongDai->id=8;
 	ms->motor8_ChuanSongDai->GPIOx=GPIOG;

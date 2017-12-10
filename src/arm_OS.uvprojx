@@ -473,6 +473,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>cmds</GroupName>
+          <Files>
+            <File>
+              <FileName>cmds.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cmds\cmds.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmds.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\cmds\cmds.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>

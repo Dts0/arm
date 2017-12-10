@@ -39,12 +39,8 @@
 
 
 /**需要再额外配置的位置
-*1> main.c 70 void motorsConfig(Motors *ms)中对添加的电机的配置,注意添加电机停止条件函数stopFunc的指针
-*2> 添加关于步骤localM的修改代码
 *3> encoder1的配置
-*4> thread.c 32 void thread_main(void *p)中对主函数根据工作过程修改
 *5> 如果需要,添加LCD显示屏模块
-*6>main.c 78 void flagInit(sysState *flags)中对flag初始化
 **/
 
 
