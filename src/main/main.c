@@ -194,7 +194,7 @@ void flagInit(sysState *flags)
 	flags->runningFlag3_TuiBanChuiZhi=off;
 	flags->runningFlag4_CeDangBan=off;
 	flags->runningFlag5_DangLiaoBanTuiChu=off;
-	flags->runningFlag6_DaiDaoGan=off;
+	flags->runningFlag6_TuiBanTuiChu=off;
 	flags->runningFlag7_DongLiGunTong=off;
 	flags->runningFlag8_ChuanSongDai=off;
 	flags->runningFlag9_WuGan=off;

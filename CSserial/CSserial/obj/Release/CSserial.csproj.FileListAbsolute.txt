@@ -7,3 +7,14 @@ C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Release\CSserial.
 C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Release\CSserial.exe
 C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Release\CSserial.pdb
 C:\Users\Administrator\Desktop\myProject\CSserial\CSserial\obj\Release\CSserial.csprojResolveAssemblyReference.cache
+F:\Github\ARM\arm\CSserial\CSserial\bin\Release\CSserial.exe.config
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.exe
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.pdb
+F:\Github\ARM\arm\CSserial\CSserial\bin\Release\CSserial.exe
+F:\Github\ARM\arm\CSserial\CSserial\bin\Release\CSserial.pdb
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.csprojResolveAssemblyReference.cache
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.Form1.resources
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.main.resources
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.Properties.Resources.resources
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.csproj.GenerateResource.Cache
+F:\Github\ARM\arm\CSserial\CSserial\obj\Release\CSserial.chooseSerial.resources

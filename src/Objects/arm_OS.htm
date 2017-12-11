@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\arm_OS.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\arm_OS.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Dec 10 21:37:57 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Dec 11 16:38:22 2017
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -721,7 +721,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e5]"></a>osMutexAcquire</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, rtx_mutex.o(.text.osMutexAcquire))
-<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction0
+<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd0_STOP
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
 </UL>
@@ -736,7 +736,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e8]"></a>osMutexRelease</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, rtx_mutex.o(.text.osMutexRelease))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction2
+<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd2_CONT
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 </UL>
@@ -1017,8 +1017,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[106]"></a>Encoder1GetCount</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, encoder.o(i.Encoder1GetCount))
-<BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_LED
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reZero
+<BR><BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reZero
 </UL>
 
 <P><STRONG><a name="[a9]"></a>Encoder1GetDeg</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, encoder.o(i.Encoder1GetDeg))
@@ -1040,8 +1039,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[105]"></a>Encoder1GetTurn</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, encoder.o(i.Encoder1GetTurn))
-<BR><BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_LED
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reZero
+<BR><BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reZero
 </UL>
 
 <P><STRONG><a name="[f8]"></a>Encoder1Init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, encoder.o(i.Encoder1Init))
@@ -1082,6 +1080,7 @@ Global Symbols
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_main
+<LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_LED
 </UL>
 
 <P><STRONG><a name="[b6]"></a>Encoder2Init</STRONG> (Thumb, 290 bytes, Stack size 48 bytes, encoder.o(i.Encoder2Init))
@@ -1464,8 +1463,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motorTurn
 </UL>
 
-<P><STRONG><a name="[ea]"></a>cmdFunction0</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, cmds.o(i.cmdFunction0))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = cmdFunction0 &rArr; os_serialPrintf &rArr; SerialPrintf
+<P><STRONG><a name="[ea]"></a>cmd0_STOP</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, cmds.o(i.cmd0_STOP))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = cmd0_STOP &rArr; os_serialPrintf &rArr; SerialPrintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexAcquire
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
@@ -1473,16 +1472,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_serial_receive
 </UL>
 
-<P><STRONG><a name="[ec]"></a>cmdFunction1</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, cmds.o(i.cmdFunction1))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = cmdFunction1 &rArr; os_serialPrintf &rArr; SerialPrintf
+<P><STRONG><a name="[ec]"></a>cmd1_RST</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, cmds.o(i.cmd1_RST))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = cmd1_RST &rArr; os_serialPrintf &rArr; SerialPrintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_serial_receive
 </UL>
 
-<P><STRONG><a name="[ed]"></a>cmdFunction2</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, cmds.o(i.cmdFunction2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = cmdFunction2 &rArr; os_serialPrintf &rArr; SerialPrintf
+<P><STRONG><a name="[ed]"></a>cmd2_CONT</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, cmds.o(i.cmd2_CONT))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = cmd2_CONT &rArr; os_serialPrintf &rArr; SerialPrintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexRelease
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
@@ -1490,8 +1489,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_serial_receive
 </UL>
 
-<P><STRONG><a name="[ee]"></a>cmdFunction3</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, cmds.o(i.cmdFunction3))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = cmdFunction3 &rArr; os_serialPrintf &rArr; SerialPrintf
+<P><STRONG><a name="[ee]"></a>cmd2_RSD</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, cmds.o(i.cmd2_RSD))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = cmd2_RSD &rArr; os_serialPrintf &rArr; SerialPrintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
 </UL>
@@ -1671,10 +1670,10 @@ Global Symbols
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SerialPrintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdNotFind
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction3
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction2
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction1
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction0
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd2_RSD
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd2_CONT
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd1_RST
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd0_STOP
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_turnOnMotor
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_serial_send
 <LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;thread_serial_receive
@@ -1705,15 +1704,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6]"></a>thread_LED</STRONG> (Thumb, 202 bytes, Stack size 0 bytes, threads.o(i.thread_LED))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = thread_LED &rArr; Encoder1LEDInit &rArr; GPIO_Init
+<P><STRONG><a name="[6]"></a>thread_LED</STRONG> (Thumb, 340 bytes, Stack size 0 bytes, threads.o(i.thread_LED))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = thread_LED &rArr; Encoder2GetDistance &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder2GetDistance
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder1LEDInit
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder1GetTurn
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Encoder1GetCount
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.data)
 </UL>
@@ -1749,10 +1747,10 @@ Global Symbols
 <LI>Call Chain = thread_serial_receive &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdNotFind
-<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction3
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction2
-<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction1
-<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmdFunction0
+<LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd2_RSD
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd2_CONT
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd1_RST
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd0_STOP
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialReceivedString
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_serialPrintf
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp

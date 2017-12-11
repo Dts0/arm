@@ -9,7 +9,7 @@ extern osMutexId  uart_mutex_id; // Mutex ID
 extern char *printfBuf;
 const char* cmds[]={"STOP","RST","CONT","RSD"};
 //stop,reset,continue,resend
-void cmdFunction0()
+void cmd0_STOP()
 {
 			if(state.flag_running==true) 
 			{
@@ -19,12 +19,12 @@ void cmdFunction0()
 			}
 			else os_serialPrintf("OK,but error\n");
 }
-void cmdFunction1()
+void cmd1_RST()
 {
 	os_serialPrintf("OK,reset\n");
 	NVIC_SystemReset();// 复位
 }
-void cmdFunction2()
+void cmd2_CONT()
 {
 	if(state.flag_running==false) 
 		{
@@ -33,7 +33,7 @@ void cmdFunction2()
 			os_serialPrintf("OK,continue\n");}
 		else os_serialPrintf("OK,but error\n");
 }
-void cmdFunction3()
+void cmd2_RSD()
 {
 	os_serialPrintf(printfBuf);
 }

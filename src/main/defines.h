@@ -15,7 +15,7 @@ typedef enum{
 	open=2
 	*/
 	close=0,
-	open=!close
+	open=1
 } positionStatus;
 
 
@@ -30,7 +30,7 @@ typedef struct
 	volatile motorStatus runningFlag3_TuiBanChuiZhi;//推板垂直移动汽缸
 	volatile motorStatus runningFlag4_CeDangBan;//侧挡板汽缸
 	volatile motorStatus runningFlag5_DangLiaoBanTuiChu;//挡料板推出汽缸,推出为on,缩回为rev
-	volatile motorStatus runningFlag6_DaiDaoGan;//带导杆汽缸
+	volatile motorStatus runningFlag6_TuiBanTuiChu;//推板推出汽缸
 	volatile motorStatus runningFlag7_DongLiGunTong;//动力滚筒
 	volatile motorStatus runningFlag8_ChuanSongDai;//伸缩机传送带电机
 	volatile motorStatus runningFlag9_WuGan;//无杆汽缸
@@ -41,7 +41,7 @@ typedef struct
 	volatile positionStatus positionFlag3_TuiBanChuiZhi;
 	volatile positionStatus positionFlag4_CeDangBan;
 	volatile positionStatus positionFlag5_TuiLiaoShenSuoJi;
-	volatile positionStatus positionFlag6_DaiDaoGan;//带导杆汽缸后位为close
+	volatile positionStatus positionFlag6_TuiBanTuiChu;//推板推出汽缸后位为close
 	*/
 	
 	unsigned volatile short count;//当前已完成装载的物料数,4的整数倍

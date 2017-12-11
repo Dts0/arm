@@ -71,7 +71,7 @@ void _setStateRunFlag(int id,motorStatus flag)
 		case 3:state.runningFlag3_TuiBanChuiZhi=flag;break;
 		case 4:state.runningFlag4_CeDangBan=flag;break;
 		case 5:state.runningFlag5_DangLiaoBanTuiChu=flag;break;
-		case 6:state.runningFlag6_DaiDaoGan=flag;break;
+		case 6:state.runningFlag6_TuiBanTuiChu=flag;break;
 		case 7:state.runningFlag7_DongLiGunTong=flag;break;
 		case 8:state.runningFlag8_ChuanSongDai=flag;break;
 		case 9:state.runningFlag9_WuGan=flag;break;

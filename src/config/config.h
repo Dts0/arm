@@ -28,7 +28,7 @@
 
 /**管脚定义
 *PA09 Tx ;PA10 Rx
-*PC LEDs
+*PC0-13 LEDs
 *encoder1暂未配置,卷扬机上下 绝对编码器
 *PB6,7 TIM4 ch1,2 对应encoder2,小车前后,增量编码器,PB1为归零
 *LCD屏幕:PB0,PD0,1,4,5,8,9,10,14,15,PE7-15,PG0,12

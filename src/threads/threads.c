@@ -585,8 +585,8 @@ void thread_serial_send(void *p)
 	sprintf(msg,"%s%u ",msg,state->runningFlag3_TuiBanChuiZhi);
 	sprintf(msg,"%s%d ",msg,state->runningFlag4_CeDangBan);
 	sprintf(msg,"%s%d ",msg,state->runningFlag5_DangLiaoBanTuiChu);
-	sprintf(msg,"%s%d ",msg,state->runningFlag6_DaiDaoGan);
-	//sprintf(msg,"%s%d ",msg,state->runningFlag7_DongLiGunTong);
+	sprintf(msg,"%s%d ",msg,state->runningFlag6_TuiBanTuiChu);
+	sprintf(msg,"%s%d ",msg,state->runningFlag7_DongLiGunTong);
 	sprintf(msg,"%s%d ",msg,state->runningFlag8_ChuanSongDai);
 	sprintf(msg,"%s%d ",msg,state->runningFlag9_WuGan);
 	sprintf(msg,"%s%s",msg,_SEND_CHANGE_CHAR);
@@ -636,19 +636,19 @@ void thread_serial_receive(void *p)
 		cmd = os_serialReceivedString(5);
 	if(strcmp(cmd,cmds[0])==0) 
 		{
-			cmdFunction0();
+			cmd0_STOP();
 		}
 	else if(strcmp(cmd,cmds[1])==0) 
 	{
-		cmdFunction1();
+		cmd1_RST();
 	}
 	else if(strcmp(cmd,cmds[2])==0) 
 	{
-		cmdFunction2();
+		cmd2_CONT();
 	}
 	else if(strcmp(cmd,cmds[3])==0)
 	{
-		cmdFunction3();
+		cmd2_RSD();
 	} else cmdNotFind();
 		sprintf(cmd,"");
 	}
@@ -660,29 +660,41 @@ void thread_LED(void *p)
 #endif
 	
 	Encoder1LEDInit();
-	int count=0;
-	//int deg=0;
-	int turn=0;
+	int distance=0;
 	
 	while(1)
 	{
-		count=Encoder1GetCount();
-		turn=Encoder1GetTurn();
+		distance=Encoder2GetDistance(D_JuanYangJi);
 		GPIO_SetBits(GPIOC,GPIO_Pin_All);
-		if((turn==-1 && count>395)||(turn==0 && count <=5))
-			GPIO_ResetBits(GPIOC,GPIO_Pin_3);
-		else if(turn==0 && count>5 && count<=15)
-			GPIO_ResetBits(GPIOC,GPIO_Pin_4);
-		else if(turn==-1 && count>385 && count<=395)
-			GPIO_ResetBits(GPIOC,GPIO_Pin_2);
-		else if(turn==0 && count>15 && count<=25)
-			GPIO_ResetBits(GPIOC,GPIO_Pin_5);
-		else if(turn==-1 && count>375 && count<=385)
-			GPIO_ResetBits(GPIOC,GPIO_Pin_1);
-		else if((turn>0)||(turn==0 && count>25))
-			GPIO_ResetBits(GPIOC,GPIO_Pin_6);
-		else if((turn<-1)||(turn==-1 && count<=375))
+		if(distance<=-950)
 			GPIO_ResetBits(GPIOC,GPIO_Pin_0);
+		else if(distance>-950 && distance<=-800)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_1);
+		else if(distance>-800 && distance<=-650)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_2);
+		else if(distance>-650 && distance<=-500)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_3);
+		else if(distance>-500 && distance<=-350)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_4);
+		else if(distance>-350 && distance<=-200)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_5);
+		else if(distance>-200 && distance<=-50)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_6);
+		else if(distance>-50 && distance<=100)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_7);
+		else if(distance>100 && distance<=250)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_8);
+		else if(distance>250 && distance<=400)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_9);
+		else if(distance>400 && distance<=550)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_10);
+		else if(distance>550 && distance<=700)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_11);
+		else if(distance>700 && distance<=850)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_12);
+		else if(distance>850)
+			GPIO_ResetBits(GPIOC,GPIO_Pin_13);
+		else ;
 	
 	}
 }

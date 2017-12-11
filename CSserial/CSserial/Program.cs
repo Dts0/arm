@@ -8,6 +8,7 @@ namespace CSserial
 {
     static class Program
     {
+        public static main FormMain;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -16,12 +17,17 @@ namespace CSserial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
+            FormMain = new main();
+            Application.Run(FormMain);
+            /*try
             {
-                Application.Run(new Form1());
+                FormMain = new main();
+                Application.Run(FormMain);
             }
             catch (Exception err)
-            { }
+            {
+            MessageBox.Show(err.Data.ToString());
+            }*/
         }
     }
 }
