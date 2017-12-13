@@ -9,7 +9,7 @@
 #define motorThreadStackSize 100
 
 #define _SEND_START_CHAR "{"//'发送开始'标志
-#define _SEND_CHANGE_CHAR "#"//'发送变换'标志,表示发送下一个项目
+
 #define _SEND_END_CHAR "}"//'发送停止'标志
 #define _SEND_DELAY_TIME 1000//串口发送数据的间隔
 
@@ -58,10 +58,28 @@ bool HasArrivedAtE(void);
 positionStatus getTieBiPosition(void);//返回贴壁汽缸的汽缸电磁传感器值
 positionStatus getCeDangBanPosition(void);//返回侧挡板汽缸的汽缸电磁传感器值
 positionStatus getTuiBanPosition(void);//返回推板垂直汽缸的汽缸电磁传感器值
-positionStatus getDaiDaoGanPosition(void);//返回带导杆汽缸的汽缸电磁传感器值
+positionStatus getTuiBanTuiChuPosition(void);//返回推板推出汽缸的汽缸电磁传感器值
 positionStatus getDangLiaoBanChuiZhiPosition(void);//返回挡料板垂直汽缸的汽缸电磁传感器值
 positionStatus getDangLiaoBanTuiChuPosition(void);//返回挡料板推出气缸的汽缸电磁传感器值
 
+#ifdef _DEBUG
+void SetHasEnteredBox(bool msg);//设置光电传感器,是否已经进箱子
+void SetHasItems(bool msg);//设置动力滚筒上是否有料
+void SetHasArrivedAtExtremePosition(bool msg);//设置料到达动力滚筒极限位置
+void SetHasArrivedAtB(bool msg);//设置B传感器
+void SetHasArrivedAtC(bool msg);
+void SetHasArrivedAtD(bool msg);
+void SetHasArrivedAtE(bool msg);
+
+void setTieBiPosition(bool msg);//设置贴壁汽缸的汽缸电磁传感器值
+void setCeDangBanPosition(bool msg);//设置侧挡板汽缸的汽缸电磁传感器值
+void setTuiBanPosition(bool msg);//设置推板垂直汽缸的汽缸电磁传感器值
+void setTuiBanTuiChuPosition(bool msg);//设置推板推出汽缸的汽缸电磁传感器值
+void setDangLiaoBanChuiZhiPosition(bool msg);//设置挡料板垂直汽缸的汽缸电磁传感器值-
+void setDangLiaoBanTuiChuPosition(bool msg);//设置挡料板推出气缸的汽缸电磁传感器值
+
+
+#endif
 //电机或汽缸停止函数声明
 void motor0_TieBi_stopFunc(void);
 void motor4_CeDangBan_stopFunc(void);

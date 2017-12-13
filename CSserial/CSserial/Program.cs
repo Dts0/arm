@@ -17,17 +17,20 @@ namespace CSserial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            FormMain = new main();
+            
+            FormMain = new main();           
             Application.Run(FormMain);
-            /*try
+             /*
+            try
             {
                 FormMain = new main();
-                Application.Run(FormMain);
+                Application.Run(new Form1());
             }
             catch (Exception err)
             {
             MessageBox.Show(err.Data.ToString());
-            }*/
+            }
+              * */
         }
     }
 }

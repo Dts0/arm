@@ -37,7 +37,7 @@ int Encoder1GetDistance(int d)//获得距离
 	return (int)(turn1*3.14*d+3.14*d*Encoder1GetDeg()/360);
 }
 
-void Encoder2Init()
+void Encoder2Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 		//NVIC

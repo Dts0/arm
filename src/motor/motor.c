@@ -5,7 +5,6 @@
 #include "../threads/threads.h"
 #include <stdio.h>
 #include <string.h>
-
 #endif
 
 void motorInit(motor *motorPointer)
@@ -28,8 +27,8 @@ void motorTurn(motor *motorPointer,motorStatus status)
 		GPIO_ResetBits(motorPointer->GPIOx,motorPointer->GPIO_Pin_x1|motorPointer->GPIO_Pin_x2);
 		_setStateRunFlag(motorPointer->id,status);
 #ifdef _DEBUG
-		char *s="";
-		sprintf(s,"%smotor%d 停止",s,motorPointer->id);
+		char s[10]="";
+		sprintf(s,"%smotor%d 停止\n",s,motorPointer->id);
 		os_serialPrintf(s);
 #endif
 	} 
@@ -39,8 +38,8 @@ void motorTurn(motor *motorPointer,motorStatus status)
 		GPIO_SetBits(motorPointer->GPIOx,motorPointer->GPIO_Pin_x2);
 		_setStateRunFlag(motorPointer->id,status);
 #ifdef _DEBUG
-		char *s="";
-		sprintf(s,"%smotor%d 正转",s,motorPointer->id);
+		char s[10]="";
+		sprintf(s,"%smotor%d 正转\n",s,motorPointer->id);
 		os_serialPrintf(s);
 #endif
 	} 
@@ -50,8 +49,8 @@ void motorTurn(motor *motorPointer,motorStatus status)
 		GPIO_SetBits(motorPointer->GPIOx,motorPointer->GPIO_Pin_x1);
 		_setStateRunFlag(motorPointer->id,status);
 #ifdef _DEBUG
-		char *s="";
-		sprintf(s,"%smotor%d 反转",s,motorPointer->id);
+		char s[10]="";
+		sprintf(s,"%smotor%d 反转\n",s,motorPointer->id);
 		os_serialPrintf(s);
 #endif
 	}

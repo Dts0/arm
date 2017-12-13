@@ -28,32 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button_Switch = new System.Windows.Forms.Button();
-            this.comboBox_port = new System.Windows.Forms.ComboBox();
             this.richTextBox_receive = new System.Windows.Forms.RichTextBox();
             this.richTextBox_send = new System.Windows.Forms.RichTextBox();
             this.button_Send = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // button_Switch
-            // 
-            this.button_Switch.Location = new System.Drawing.Point(177, 10);
-            this.button_Switch.Name = "button_Switch";
-            this.button_Switch.Size = new System.Drawing.Size(75, 23);
-            this.button_Switch.TabIndex = 0;
-            this.button_Switch.Text = "确认选择";
-            this.button_Switch.UseVisualStyleBackColor = true;
-            this.button_Switch.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // comboBox_port
-            // 
-            this.comboBox_port.FormattingEnabled = true;
-            this.comboBox_port.Location = new System.Drawing.Point(12, 12);
-            this.comboBox_port.Name = "comboBox_port";
-            this.comboBox_port.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_port.TabIndex = 1;
             // 
             // richTextBox_receive
             // 
@@ -91,43 +70,27 @@
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(283, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "重置";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 403);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(689, 317);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.button_Send);
             this.Controls.Add(this.richTextBox_send);
             this.Controls.Add(this.richTextBox_receive);
-            this.Controls.Add(this.comboBox_port);
-            this.Controls.Add(this.button_Switch);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "串口工具";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button_Switch;
-        private System.Windows.Forms.ComboBox comboBox_port;
         private System.Windows.Forms.RichTextBox richTextBox_receive;
         private System.Windows.Forms.RichTextBox richTextBox_send;
         private System.Windows.Forms.Button button_Send;
         private System.Windows.Forms.Button button_clear;
-        private System.Windows.Forms.Button button1;
     }
 }
 

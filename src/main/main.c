@@ -5,6 +5,7 @@
 #include "../serial/serial.h"
 #include "../encoder/encoder.h"
 #include "../config/config.h"
+#include <stdlib.h>
 
 //osThreadDef (task1, osPriorityNormal, 1, 0);
 //osThreadId id1,id2;
@@ -47,17 +48,17 @@ int main()
 #ifdef _DEBUG
 	SerialPrintf("线程thread_main创建\n");
 #endif
-	osThreadDef(thread_serial_send0,osPriorityNormal,1,8*((sizeof(sysState *)+50*sizeof(char))));//(sizeof(sysState *)+30*sizeof(char))
-	ids.id_serial_send=osThreadCreate(osThread(thread_serial_send0),&state);
+	osThreadDef(thread_serial_send0,osPriorityNormal,1,500);//(sizeof(sysState *)+30*sizeof(char))
+	ids.id_serial_send=osThreadCreate(osThread(thread_serial_send0),NULL);
 #ifdef _DEBUG
 	SerialPrintf("线程thread_serial_send创建\n");
 #endif
-	osThreadDef(thread_serial_receive0,osPriorityNormal,1,200);//5*sizeof(char)
+	osThreadDef(thread_serial_receive0,osPriorityNormal,2,500);//5*sizeof(char)
 	ids.id_serial_receive=osThreadCreate(osThread(thread_serial_receive0),NULL);
 #ifdef _DEBUG
 	SerialPrintf("线程thread_serial_receive创建\n");
 #endif
-	osThreadDef(thread_LED0,osPriorityNormal, 1, 100);//2*sizeof(int)
+	osThreadDef(thread_LED0,osPriorityNormal, 2, 200);//2*sizeof(int)
 	ids.id_LED=osThreadCreate (osThread (thread_LED0), NULL);
 #ifdef _DEBUG
 	SerialPrintf("线程thread_LED创建\n");
@@ -67,7 +68,7 @@ int main()
 	state.flag_running=true;
 //启动	
 #ifdef _DEBUG
-	SerialPrintf("操作系统启动,开始任务调度\n");
+	SerialPrintf("操作系统启动,开始任务调度 \n");
 #endif
 	osKernelStart ();
 
@@ -76,6 +77,18 @@ int main()
 
 void motorsConfig(Motors *ms)//电机配置
 {
+	ms->motory=(motor *)malloc(sizeof(motor));
+	ms->motor0_TieBiZhuangZhi=(motor *)malloc(sizeof(motor));
+	ms->motor1_JuanYangJi=(motor *)malloc(sizeof(motor));
+	ms->motor2_DangLiaoBanChuiZhi=(motor *)malloc(sizeof(motor));
+	ms->motor3_TuiBanChuiZhi=(motor *)malloc(sizeof(motor));
+	ms->motor4_CeDangBan=(motor *)malloc(sizeof(motor));
+	ms->motor5_DangLiaoBanTuiChu=(motor *)malloc(sizeof(motor));
+	ms->motor6_DaiDaoGan=(motor *)malloc(sizeof(motor));
+	ms->motor7_DongLiGunTong=(motor *)malloc(sizeof(motor));
+	ms->motor8_ChuanSongDai=(motor *)malloc(sizeof(motor));
+	ms->motor9_WuGan=(motor *)malloc(sizeof(motor));
+	
 	ms->motory->id=-1;
 	ms->motory->GPIOx=GPIOF;
 	ms->motory->GPIO_Pin_x1=GPIO_Pin_0;

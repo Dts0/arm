@@ -81,7 +81,7 @@ positionStatus getTuiBanPosition(void)//返回推板垂直汽缸的汽缸电磁�
 		return open;
 	else return close;
 }
-positionStatus getDaiDaoGanPosition(void)//返回带导杆汽缸的汽缸电磁传感器值
+positionStatus getTuiBanTuiChuPosition(void)//返回带导杆汽缸的汽缸电磁传感器值
 {
 	if(GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_3)==SET)//读PE3管脚判断是否为高电位
 		return open;
@@ -99,3 +99,88 @@ positionStatus getDangLiaoBanTuiChuPosition(void)//返回挡料板推出气缸�
 		return open;
 	else return close;
 }
+#ifdef _DEBUG
+
+void SetHasEnteredBox(bool msg)//设置光电传感器,是否已经进箱子
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_2);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_2);
+}
+void SetHasItems(bool msg)//设置动力滚筒上是否有料
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_3);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_3);
+}
+void SetHasArrivedAtExtremePosition(bool msg)//设置料到达动力滚筒极限位置
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_6);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_6);
+}
+void SetHasArrivedAtB(bool msg)//设置B传感器
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_7);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_7);
+}
+void SetHasArrivedAtC(bool msg)
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_11);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_11);
+}
+void SetHasArrivedAtD(bool msg)
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_12);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_12);
+}
+void SetHasArrivedAtE(bool msg)
+{
+	if(msg)
+	GPIO_SetBits(GPIOD,GPIO_Pin_13);
+	else GPIO_ResetBits(GPIOD,GPIO_Pin_13);
+}
+
+void setTieBiPosition(bool msg)//设置贴壁汽缸的汽缸电磁传感器值
+{
+	if(msg)
+	GPIO_SetBits(GPIOE,GPIO_Pin_0);
+	else GPIO_ResetBits(GPIOE,GPIO_Pin_0);
+}
+void setCeDangBanPosition(bool msg)//设置侧挡板汽缸的汽缸电磁传感器值
+{
+	if(msg)
+	GPIO_SetBits(GPIOE,GPIO_Pin_1);
+	else GPIO_ResetBits(GPIOE,GPIO_Pin_1);
+}
+void setTuiBanPosition(bool msg)//设置推板垂直汽缸的汽缸电磁传感器值
+{
+	if(msg)
+	GPIO_SetBits(GPIOE,GPIO_Pin_2);
+	else GPIO_ResetBits(GPIOE,GPIO_Pin_2);
+}
+void setTuiBanTuiChuPosition(bool msg)//设置带导杆汽缸的汽缸电磁传感器值
+{
+	if(msg)
+	GPIO_SetBits(GPIOE,GPIO_Pin_3);
+	else GPIO_ResetBits(GPIOE,GPIO_Pin_3);
+}
+void setDangLiaoBanChuiZhiPosition(bool msg)//设置挡料板垂直汽缸的汽缸电磁传感器值
+{
+	if(msg)
+	GPIO_SetBits(GPIOE,GPIO_Pin_4);
+	else GPIO_ResetBits(GPIOE,GPIO_Pin_4);
+}
+void setDangLiaoBanTuiChuPosition(bool msg)//设置挡料板推出气缸的汽缸电磁传感器值
+{
+	if(msg)
+	GPIO_SetBits(GPIOE,GPIO_Pin_5);
+	else GPIO_ResetBits(GPIOE,GPIO_Pin_5);
+}
+
+
+#endif
+

@@ -26,7 +26,10 @@ void thread_main(void *p)
 #endif
 	
 //step1://step1:进入箱体
+	
+	os_serialPrintf("test1");
 	motorTurn(motors.motory,on);//伸缩机电机正转,小车前进
+	os_serialPrintf("test2");
 #ifdef _DEBUG
 	os_serialPrintf("小车前进,等待进入集装箱...\n");
 #endif
@@ -125,7 +128,7 @@ os_serialPrintf("		推板已下行到位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸前行到位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	while(getTuiBanTuiChuPosition()!=open);//带导杆汽缸前行到位前一直等待
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已前行到位\n");
 #endif
@@ -157,7 +160,7 @@ os_serialPrintf("		无杆气缸已复位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸退回原位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=close);
+	while(getTuiBanTuiChuPosition()!=close);
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已退回原位\n");
 #endif
@@ -201,7 +204,7 @@ os_serialPrintf("		推板已下行到位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸前行到位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	while(getTuiBanTuiChuPosition()!=open);//带导杆汽缸前行到位前一直等待
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已前行到位\n");
 #endif
@@ -233,7 +236,7 @@ os_serialPrintf("		无杆气缸已复位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸退回原位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=close);
+	while(getTuiBanTuiChuPosition()!=close);
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已退回原位\n");
 #endif
@@ -277,7 +280,7 @@ os_serialPrintf("		推板已下行到位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸前行到位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	while(getTuiBanTuiChuPosition()!=open);//带导杆汽缸前行到位前一直等待
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已前行到位\n");
 #endif
@@ -309,7 +312,7 @@ os_serialPrintf("		无杆气缸已复位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸退回原位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=close);
+	while(getTuiBanTuiChuPosition()!=close);
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已退回原位\n");
 #endif
@@ -353,7 +356,7 @@ os_serialPrintf("		推板已下行到位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸前行到位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=open);//带导杆汽缸前行到位前一直等待
+	while(getTuiBanTuiChuPosition()!=open);//带导杆汽缸前行到位前一直等待
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已前行到位\n");
 #endif
@@ -368,7 +371,7 @@ os_serialPrintf("		带导杆气缸已前行到位\n");
 #ifdef _DEBUG
 os_serialPrintf("		等待带导杆气缸退回原位...\n");
 #endif
-	while(getDaiDaoGanPosition()!=close);
+	while(getTuiBanTuiChuPosition()!=close);
 #ifdef _DEBUG
 os_serialPrintf("		带导杆气缸已退回原位\n");
 #endif
@@ -540,7 +543,7 @@ os_serialPrintf("卷扬机已下行到位\n");
 	if(state.height<MaxHeight)//小于14层时,返回step2,码下一层
 	{
 		#ifdef _DEBUG
-		char *s="";
+		char s[20]="";
 		sprintf(s,"**第%d层码完**\n",state.height);
 		os_serialPrintf(s);
 		#endif
@@ -551,7 +554,7 @@ os_serialPrintf("卷扬机已下行到位\n");
 	if(state.column<MaxColumn)//小于最大码的列数时,返回step2,码下一列
 	{
 		#ifdef _DEBUG
-		char *s="";
+		char s[20]="";
 		sprintf(s,"**第%d列码完**\n",state.column);
 		os_serialPrintf(s);
 		#endif
@@ -561,7 +564,7 @@ os_serialPrintf("卷扬机已下行到位\n");
 	}
 	
 	#ifdef _DEBUG
-		os_serialPrintf("已码完集装箱");
+		os_serialPrintf("已码完集装箱\n");
 		#endif
 	//motorTurn(motors.motor7_DongLiGunTong,off);//动力滚筒关闭
 	while(1);//整个集装箱码完,待命
@@ -569,34 +572,31 @@ os_serialPrintf("卷扬机已下行到位\n");
 void thread_serial_send(void *p)
 {
 #ifdef _DEBUG
-	os_serialPrintf("thread_serial_send start\n");
+	os_serialPrintf("线程thread_serial_send启动\n");
 #endif
-	SerialEnableReponse(RESET);
-	sysState *state=(sysState *)p;
 	char msg[50];
 	while(1)
 	{
 	sprintf(msg,"%s%s",msg,_SEND_START_CHAR);
-	sprintf(msg,"%s%d ",msg,state->flag_running);
-	sprintf(msg,"%s%d ",msg,state->runningFlagy);
-	sprintf(msg,"%s%d ",msg,state->runningFlag0_TieBiZhuangZhi);
-	sprintf(msg,"%s%d ",msg,state->runningFlag1_JuanYangJi);
-	sprintf(msg,"%s%d ",msg,state->runningFlag2_DangLiaoBanChuiZhi);
-	sprintf(msg,"%s%u ",msg,state->runningFlag3_TuiBanChuiZhi);
-	sprintf(msg,"%s%d ",msg,state->runningFlag4_CeDangBan);
-	sprintf(msg,"%s%d ",msg,state->runningFlag5_DangLiaoBanTuiChu);
-	sprintf(msg,"%s%d ",msg,state->runningFlag6_TuiBanTuiChu);
-	sprintf(msg,"%s%d ",msg,state->runningFlag7_DongLiGunTong);
-	sprintf(msg,"%s%d ",msg,state->runningFlag8_ChuanSongDai);
-	sprintf(msg,"%s%d ",msg,state->runningFlag9_WuGan);
-	sprintf(msg,"%s%s",msg,_SEND_CHANGE_CHAR);
+	sprintf(msg,"%s%d ",msg,state.flag_running);
+	sprintf(msg,"%s%d ",msg,state.runningFlagy);
+	sprintf(msg,"%s%d ",msg,state.runningFlag0_TieBiZhuangZhi);
+	sprintf(msg,"%s%d ",msg,state.runningFlag1_JuanYangJi);
+	sprintf(msg,"%s%d ",msg,state.runningFlag2_DangLiaoBanChuiZhi);
+	sprintf(msg,"%s%u ",msg,state.runningFlag3_TuiBanChuiZhi);
+	sprintf(msg,"%s%d ",msg,state.runningFlag4_CeDangBan);
+	sprintf(msg,"%s%d ",msg,state.runningFlag5_DangLiaoBanTuiChu);
+	sprintf(msg,"%s%d ",msg,state.runningFlag6_TuiBanTuiChu);
+	sprintf(msg,"%s%d ",msg,state.runningFlag7_DongLiGunTong);
+	sprintf(msg,"%s%d ",msg,state.runningFlag8_ChuanSongDai);
+	sprintf(msg,"%s%d ",msg,state.runningFlag9_WuGan);
 	/*
-	sprintf(msg,"%s%d ",msg,state->positionFlag0_TieBiZhuangZhi);
-	sprintf(msg,"%s%d ",msg,state->positionFlag1_JuanYangJi);
-	sprintf(msg,"%s%d ",msg,state->positionFlag2_DangLiaoBanChuiZhi);
-	sprintf(msg,"%s%u ",msg,state->positionFlag3_TuiBanChuiZhi);
-	sprintf(msg,"%s%d ",msg,state->positionFlag4_CeDangBan);
-	sprintf(msg,"%s%d ",msg,state->positionFlag5_TuiLiaoShenSuoJi);
+	sprintf(msg,"%s%d ",msg,state.positionFlag0_TieBiZhuangZhi);
+	sprintf(msg,"%s%d ",msg,state.positionFlag1_JuanYangJi);
+	sprintf(msg,"%s%d ",msg,state.positionFlag2_DangLiaoBanChuiZhi);
+	sprintf(msg,"%s%u ",msg,state.positionFlag3_TuiBanChuiZhi);
+	sprintf(msg,"%s%d ",msg,state.positionFlag4_CeDangBan);
+	sprintf(msg,"%s%d ",msg,state.positionFlag5_TuiLiaoShenSuoJi);
 	*/
 	sprintf(msg,"%s%d ",msg,HasEnteredBox());//光电传感器返回是否已经进箱子
 	sprintf(msg,"%s%d ",msg,HasItems());//动力滚筒上是否有料
@@ -608,15 +608,14 @@ void thread_serial_send(void *p)
 	sprintf(msg,"%s%d ",msg,getTieBiPosition());//贴壁汽缸的汽缸电磁传感器值
 	sprintf(msg,"%s%d ",msg,getCeDangBanPosition());//侧挡板汽缸的汽缸电磁传感器值
 	sprintf(msg,"%s%d ",msg,getTuiBanPosition());//推板垂直汽缸的汽缸电磁传感器值
-	sprintf(msg,"%s%d ",msg,getDaiDaoGanPosition());//带导杆汽缸的汽缸电磁传感器值
+	sprintf(msg,"%s%d ",msg,getTuiBanTuiChuPosition());//带导杆汽缸的汽缸电磁传感器值
 	sprintf(msg,"%s%d ",msg,getDangLiaoBanChuiZhiPosition());//挡料板垂直汽缸的汽缸电磁传感器值
 	sprintf(msg,"%s%d ",msg,getDangLiaoBanTuiChuPosition());//挡料板推出气缸的汽缸电磁传感器值
 	
-	sprintf(msg,"%s%s",msg,_SEND_CHANGE_CHAR);
-	sprintf(msg,"%s%d ",msg,state->count);
-	sprintf(msg,"%s%d ",msg,state->height);
-	sprintf(msg,"%s%d ",msg,state->column);
-	sprintf(msg,"%s%d ",msg,state->localM);
+	sprintf(msg,"%s%d ",msg,state.count);
+	sprintf(msg,"%s%d ",msg,state.height);
+	sprintf(msg,"%s%d ",msg,state.column);
+	sprintf(msg,"%s%d ",msg,state.localM);
 	sprintf(msg,"%s%s",msg,_SEND_END_CHAR);
 	os_serialPrintf(msg);
 	sprintf(msg,"");//清空msg
@@ -627,8 +626,9 @@ void thread_serial_send(void *p)
 extern char* cmds[];
 void thread_serial_receive(void *p)
 {
+	//osMutexWait(uart_mutex_id, osWaitForever);
 #ifdef _DEBUG
-	os_serialPrintf("thread_serial_receive start\n");
+	os_serialPrintf("线程thread_serial_receive启动\n");
 #endif
 	char *cmd;
 	while(1)
@@ -648,15 +648,20 @@ void thread_serial_receive(void *p)
 	}
 	else if(strcmp(cmd,cmds[3])==0)
 	{
-		cmd2_RSD();
-	} else cmdNotFind();
+		cmd3_RSD();
+	} 
+	else if(strcmp(cmd,cmds[4])==0)
+	{
+		cmd4_SET();
+	} 
+	else cmdNotFind();
 		sprintf(cmd,"");
 	}
 }
 void thread_LED(void *p)
 {
 #ifdef _DEBUG
-	os_serialPrintf("thread_LED start\n");
+	os_serialPrintf("线程thread_LED启动\n");
 #endif
 	
 	Encoder1LEDInit();
@@ -707,7 +712,7 @@ void thread_turnOnMotor(void *p)
 	motorTurn(motorPointer,on);
 	
 #ifdef _DEBUG
-	char *s="";
+	char s[20]="";
 	sprintf(s,"%s等待motor%d停止条件...\n",s,motorPointer->id);
 os_serialPrintf(s);
 #endif

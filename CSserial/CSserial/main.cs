@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.Threading;
 
 namespace CSserial
 {
@@ -46,20 +47,39 @@ namespace CSserial
             FormChooseSerial = new chooseSerial();
             FormChooseSerial.Hide();
             serialPort1.NewLine="\n";
+            serialPort1.Encoding = new UTF8Encoding();
             serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
-            richTextBox1.Enabled = false;
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
+            comboBox4.SelectedIndex = 0;
+            comboBox5.SelectedIndex = 0;
+            comboBox6.SelectedIndex = 0;
+            comboBox7.SelectedIndex = 0;
+            comboBox8.SelectedIndex = 0;
+            comboBox9.SelectedIndex = 0;
+            comboBox10.SelectedIndex = 0;
+            comboBox11.SelectedIndex = 0;
+            comboBox12.SelectedIndex = 0;
         }
         void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //开辟接收缓冲区
-            byte[] ReDatas = new byte[serialPort1.BytesToRead];
-            //从串口读取数据
-            serialPort1.Read(ReDatas, 0, ReDatas.Length);
-            //实现数据的解码与显示,utf-8编码
-            string received = new UTF8Encoding().GetString(ReDatas);
+            string received;
+            if (serialPort1.BytesToRead < 30)
+                received = serialPort1.ReadExisting();
+            else 
+            { 
+                received = serialPort1.ReadTo("}");
+                received += "}";
+            }
+            richTextBox1.Text += received;
             if (received.StartsWith("{"))
             {
-                string[] receivedChars = received.Split(new char[] { ' ', '#', '}' });
+                received = received.TrimStart(new char[]{'{'}).TrimEnd(new char[]{'}'});
+                string[] receivedChars = received.Split(new char[] { ' ', '}','{' });
+                //MessageBox.Show(received+"\n"+receivedChars.Length+"");
+
+                
                 comboBox1.SelectedIndex = Convert.ToInt32(receivedChars[0]);
                 comboBox2.SelectedIndex = Convert.ToInt32(receivedChars[1]);
                 comboBox6.SelectedIndex = Convert.ToInt32(receivedChars[2]);
@@ -113,18 +133,26 @@ namespace CSserial
                 if (Convert.ToInt32(receivedChars[24]) == 1)
                     checkBox17.Checked = true;
                 else checkBox17.Checked = false;
+
+                label20.Text = "已完成装载的物料数:  " + Convert.ToInt32(receivedChars[25]);
+                label21.Text = "当前在装载的层数:    " + Convert.ToInt32(receivedChars[26]);
+                label22.Text = "当前在装载的列数:    " + Convert.ToInt32(receivedChars[27]);
+                label23.Text = "当前在装载的物料编号:" + Convert.ToInt32(receivedChars[28]);
+                
+                toolStripStatusLabel2.Text = "信息最后更新时间:"+DateTime.Now.ToString();
+                
             }
             else if (received.Equals("OK,stop\n"))
             {
-                richTextBox1.AppendText("已停止\n");
+                richTextBox1.AppendText("["+DateTime.Now.ToString()+"]已停止\n");
             }
             else if (received.Equals("OK,reset\n"))
             {
-                richTextBox1.AppendText("已重启\n");
+                richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]已重启\n");
             }
             else if (received.Equals("OK,continue\n"))
             {
-                richTextBox1.AppendText("已继续运行\n");
+                richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]已继续运行\n");
             }
             else if (received.Equals("OK,but error\n"))
             {
@@ -132,7 +160,7 @@ namespace CSserial
             }
             else if (received.Equals("ERR,unknown cmd\n"))
             {
-                richTextBox1.AppendText("ARM端无法理解的指令\n");
+                richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]ARM端无法理解的指令\n");
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -226,6 +254,161 @@ namespace CSserial
         private void button3_Click(object sender, EventArgs e)
         {
             send("CONT\0");
+        }
+
+        private void 保存SToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("1\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("2\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("3\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("4\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("5\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("6\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("7\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox13_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("13\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox14_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("14\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox15_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("15\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox16_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("16\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox17_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("17\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void checkBox18_CheckedChanged(object sender, EventArgs e)
+        {
+            send("SET\0");
+            Thread.Sleep(10);//延时10ms
+            send("18\0");
+            Thread.Sleep(10);//延时10ms
+            if (checkBox1.Checked == true)
+                send("1\0");
+            else send("0\0");
+        }
+
+        private void 串口工具ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.FormMain.serialPort1.IsOpen == true)
+                (new Form1()).Show();
+            else MessageBox.Show("未开启串口,无法使用串口工具");
         }
         
     }
