@@ -6,6 +6,7 @@
 #include "../encoder/encoder.h"
 #include "../config/config.h"
 #include <stdlib.h>
+#include <string.h>
 
 //osThreadDef (task1, osPriorityNormal, 1, 0);
 //osThreadId id1,id2;
@@ -32,6 +33,7 @@ int main()
 	motorsConfig(&motors);//电机配置
 	Encoder1Init();
 	Encoder2Init();
+	sensorsInit();
 	reZero(&state);//调零,将卸料板调到与动力滚筒同一高度
 	flagInit(&state);//state的内容初始化为零点
 	
@@ -39,36 +41,37 @@ int main()
 	if(osKernelInitialize ()==osOK)
 		;//系统成功初始化时的代码
 #ifdef _DEBUG
-	SerialPrintf("操作系统初始化...\n");
+	SerialPrintf("操作系统初始化... \n");
 #endif
 //添加thread	
 //	id1 = osThreadCreate (osThread (task1), NULL); 
-	osThreadDef(thread_main0,osPriorityNormal, 1, 1000);
+	osThreadDef(thread_main0,osPriorityNormal, 3, 2048);
 	ids.id_main=osThreadCreate (osThread (thread_main0), NULL);
 #ifdef _DEBUG
-	SerialPrintf("线程thread_main创建\n");
+	SerialPrintf("线程thread_main创建 \n");
 #endif
 	osThreadDef(thread_serial_send0,osPriorityNormal,1,500);//(sizeof(sysState *)+30*sizeof(char))
 	ids.id_serial_send=osThreadCreate(osThread(thread_serial_send0),NULL);
 #ifdef _DEBUG
-	SerialPrintf("线程thread_serial_send创建\n");
+	SerialPrintf("线程thread_serial_send创建 \n");
 #endif
 	osThreadDef(thread_serial_receive0,osPriorityNormal,2,500);//5*sizeof(char)
 	ids.id_serial_receive=osThreadCreate(osThread(thread_serial_receive0),NULL);
 #ifdef _DEBUG
-	SerialPrintf("线程thread_serial_receive创建\n");
+	SerialPrintf("线程thread_serial_receive创建 \n");
 #endif
 	osThreadDef(thread_LED0,osPriorityNormal, 2, 200);//2*sizeof(int)
 	ids.id_LED=osThreadCreate (osThread (thread_LED0), NULL);
 #ifdef _DEBUG
-	SerialPrintf("线程thread_LED创建\n");
+	SerialPrintf("线程thread_LED创建 \n");
 #endif
 
 	uart_mutex_id = osMutexCreate(osMutex(uart_mutex));//进程锁创建
 	state.flag_running=true;
+
 //启动	
 #ifdef _DEBUG
-	SerialPrintf("操作系统启动,开始任务调度 \n");
+	SerialPrintf("操作系统启动,开始任务调度  \n");
 #endif
 	osKernelStart ();
 
@@ -168,7 +171,7 @@ void motorsConfig(Motors *ms)//电机配置
 	motorInit(ms->motor9_WuGan);
 	
 #ifdef _DEBUG
-	SerialPrintf("电机配置完成\n");
+	SerialPrintf("电机配置完成 \n");
 #endif
 }
 void reZero(sysState *flags)
@@ -188,13 +191,13 @@ void reZero(sysState *flags)
 		Encoder1SetCount(0);//编码器计数归零
 		Encoder1SetTurn(0);
 		#ifdef _DEBUG
-			SerialPrintf("卸料板调零完成\n");
+			SerialPrintf("卸料板调零完成 \n");
 		#endif
 	}
 	else 
 	{
 		#ifdef _DEBUG
-			SerialPrintf("卸料板当前处于零位,无需调零\n");
+			SerialPrintf("卸料板当前处于零位,无需调零 \n");
 		#endif
 	}
 }
@@ -225,6 +228,6 @@ void flagInit(sysState *flags)
 	flags->height=0;
 	flags->localM=0;
 #ifdef _DEBUG
-	SerialPrintf("state内容初始化\n");
+	SerialPrintf("state内容初始化 \n");
 #endif
 }

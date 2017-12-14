@@ -17,17 +17,9 @@ namespace CSserial
         public Form1()
         {
             InitializeComponent();
-            Program.FormMain.serialPort1.DataReceived += new SerialDataReceivedEventHandler(Com_DataReceived);
+            //Program.FormMain.serialPort1.DataReceived += new SerialDataReceivedEventHandler(Com_DataReceived);
         }
-        private void Com_DataReceived(object sender, SerialDataReceivedEventArgs e)
-          {
-              //开辟接收缓冲区
-              byte[] ReDatas = new byte[Program.FormMain.serialPort1.BytesToRead];
-              //从串口读取数据
-              Program.FormMain.serialPort1.Read(ReDatas, 0, ReDatas.Length);
-              //实现数据的解码与显示,utf-8编码
-              richTextBox_receive.AppendText(new UTF8Encoding().GetString(ReDatas));
-          }
+ 
 
         
 
@@ -57,7 +49,7 @@ namespace CSserial
 
         private void button_clear_Click(object sender, EventArgs e)
         {
-            richTextBox_receive.Text = "";
+           
         }
 
 

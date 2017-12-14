@@ -28,7 +28,7 @@ void motorTurn(motor *motorPointer,motorStatus status)
 		_setStateRunFlag(motorPointer->id,status);
 #ifdef _DEBUG
 		char s[10]="";
-		sprintf(s,"%smotor%d 停止\n",s,motorPointer->id);
+		sprintf(s,"%smotor%d 停止 \n",s,motorPointer->id);
 		os_serialPrintf(s);
 #endif
 	} 
@@ -39,7 +39,7 @@ void motorTurn(motor *motorPointer,motorStatus status)
 		_setStateRunFlag(motorPointer->id,status);
 #ifdef _DEBUG
 		char s[10]="";
-		sprintf(s,"%smotor%d 正转\n",s,motorPointer->id);
+		sprintf(s,"%smotor%d 正转 \n",s,motorPointer->id);
 		os_serialPrintf(s);
 #endif
 	} 
@@ -50,7 +50,7 @@ void motorTurn(motor *motorPointer,motorStatus status)
 		_setStateRunFlag(motorPointer->id,status);
 #ifdef _DEBUG
 		char s[10]="";
-		sprintf(s,"%smotor%d 反转\n",s,motorPointer->id);
+		sprintf(s,"%smotor%d 反转 \n",s,motorPointer->id);
 		os_serialPrintf(s);
 #endif
 	}

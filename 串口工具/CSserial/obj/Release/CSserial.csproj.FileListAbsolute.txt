@@ -16,3 +16,6 @@ C:\Users\Administrator\Desktop\arm-66d271240e0a7945da1fdf60415e954bce17501d\CSse
 C:\Users\Administrator\Desktop\arm-66d271240e0a7945da1fdf60415e954bce17501d\CSserial\CSserial\obj\Release\CSserial.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\arm-66d271240e0a7945da1fdf60415e954bce17501d\CSserial\CSserial\obj\Release\CSserial.exe
 C:\Users\Administrator\Desktop\arm-66d271240e0a7945da1fdf60415e954bce17501d\CSserial\CSserial\obj\Release\CSserial.pdb
+F:\Github\ARM\arm\串口工具\CSserial\bin\Release\CSserial.exe.config
+F:\Github\ARM\arm\串口工具\CSserial\obj\Release\CSserial.exe
+F:\Github\ARM\arm\串口工具\CSserial\obj\Release\CSserial.pdb

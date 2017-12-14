@@ -6,10 +6,9 @@
 #include "stdbool.h"
 
 
-#define motorThreadStackSize 100
+#define motorThreadStackSize 500
 
 #define _SEND_START_CHAR "{"//'发送开始'标志
-
 #define _SEND_END_CHAR "}"//'发送停止'标志
 #define _SEND_DELAY_TIME 1000//串口发送数据的间隔
 

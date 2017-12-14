@@ -82,13 +82,13 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件FToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,11 +96,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.退出XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.编辑EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工具TToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.选项OToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.测试工具ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.串口工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -324,8 +324,8 @@
             // 
             this.comboBox12.FormattingEnabled = true;
             this.comboBox12.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox12.Location = new System.Drawing.Point(350, 174);
             this.comboBox12.Name = "comboBox12";
@@ -336,8 +336,8 @@
             // 
             this.comboBox11.FormattingEnabled = true;
             this.comboBox11.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox11.Location = new System.Drawing.Point(350, 147);
             this.comboBox11.Name = "comboBox11";
@@ -348,8 +348,8 @@
             // 
             this.comboBox10.FormattingEnabled = true;
             this.comboBox10.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox10.Location = new System.Drawing.Point(350, 120);
             this.comboBox10.Name = "comboBox10";
@@ -360,8 +360,8 @@
             // 
             this.comboBox9.FormattingEnabled = true;
             this.comboBox9.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox9.Location = new System.Drawing.Point(350, 97);
             this.comboBox9.Name = "comboBox9";
@@ -372,8 +372,8 @@
             // 
             this.comboBox8.FormattingEnabled = true;
             this.comboBox8.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox8.Location = new System.Drawing.Point(350, 70);
             this.comboBox8.Name = "comboBox8";
@@ -384,8 +384,8 @@
             // 
             this.comboBox7.FormattingEnabled = true;
             this.comboBox7.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox7.Location = new System.Drawing.Point(350, 46);
             this.comboBox7.Name = "comboBox7";
@@ -396,8 +396,8 @@
             // 
             this.comboBox6.FormattingEnabled = true;
             this.comboBox6.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox6.Location = new System.Drawing.Point(350, 20);
             this.comboBox6.Name = "comboBox6";
@@ -408,8 +408,8 @@
             // 
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox5.Location = new System.Drawing.Point(126, 123);
             this.comboBox5.Name = "comboBox5";
@@ -420,8 +420,8 @@
             // 
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox4.Location = new System.Drawing.Point(126, 96);
             this.comboBox4.Name = "comboBox4";
@@ -432,8 +432,8 @@
             // 
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox3.Location = new System.Drawing.Point(126, 71);
             this.comboBox3.Name = "comboBox3";
@@ -444,8 +444,8 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox2.Location = new System.Drawing.Point(126, 48);
             this.comboBox2.Name = "comboBox2";
@@ -456,8 +456,8 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "正向运行",
             "停止",
+            "正向运行",
             "反向运行"});
             this.comboBox1.Location = new System.Drawing.Point(126, 24);
             this.comboBox1.Name = "comboBox1";
@@ -673,6 +673,13 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel1.Text = "就绪";
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
+            this.toolStripStatusLabel2.Text = "暂未有信息更新";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label23);
@@ -730,13 +737,6 @@
             this.label24.Size = new System.Drawing.Size(35, 12);
             this.label24.TabIndex = 7;
             this.label24.Text = "日志:";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
-            this.toolStripStatusLabel2.Text = "暂未有信息更新";
             // 
             // menuStrip1
             // 
@@ -798,12 +798,6 @@
             this.编辑EToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.编辑EToolStripMenuItem.Text = "编辑";
             // 
-            // 选项OToolStripMenuItem
-            // 
-            this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
-            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.选项OToolStripMenuItem.Text = "选项(&O)";
-            // 
             // 工具TToolStripMenuItem
             // 
             this.工具TToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -813,26 +807,32 @@
             this.工具TToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.工具TToolStripMenuItem.Text = "工具";
             // 
-            // 关于ToolStripMenuItem
+            // 选项OToolStripMenuItem
             // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.关于ToolStripMenuItem.Text = "关于";
+            this.选项OToolStripMenuItem.Name = "选项OToolStripMenuItem";
+            this.选项OToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.选项OToolStripMenuItem.Text = "选项(&O)";
             // 
             // 测试工具ToolStripMenuItem1
             // 
             this.测试工具ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.串口工具ToolStripMenuItem});
             this.测试工具ToolStripMenuItem1.Name = "测试工具ToolStripMenuItem1";
-            this.测试工具ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.测试工具ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.测试工具ToolStripMenuItem1.Text = "测试工具";
             // 
             // 串口工具ToolStripMenuItem
             // 
             this.串口工具ToolStripMenuItem.Name = "串口工具ToolStripMenuItem";
-            this.串口工具ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.串口工具ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.串口工具ToolStripMenuItem.Text = "串口工具";
             this.串口工具ToolStripMenuItem.Click += new System.EventHandler(this.串口工具ToolStripMenuItem_Click);
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.关于ToolStripMenuItem.Text = "关于";
             // 
             // main
             // 
