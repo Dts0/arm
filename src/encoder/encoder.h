@@ -17,6 +17,7 @@ int Encoder1GetTurn(void);//获得圈数
 void Encoder1SetTurn(int turn);//设置圈数
 void Encoder1SetCount(int count);//设置计数
 int Encoder1GetDistance(int d);//获得距离
+void Encoder1SetDistance(int dis,int d);//设置距离
 
 
 void Encoder2Init(void);
@@ -24,6 +25,7 @@ uint32_t Encoder2GetCount(void);//获得计数数
 uint32_t Encoder2GetDeg(void);//获得当前位置的度数,保留到整数
 int Encoder2GetTurn(void);//获得圈数
 int Encoder2GetDistance(int d);//获得距离
+void Encoder2SetDistance(int dis,int d);//设置距离
 
 
 #endif

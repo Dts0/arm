@@ -46,7 +46,7 @@ namespace CSserial
             disableItems2();
             FormChooseSerial = new chooseSerial();
             FormChooseSerial.Hide();
-            serialPort1.NewLine="\n";
+            serialPort1.NewLine = "\n";
             serialPort1.Encoding = new UTF8Encoding();
             serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
             comboBox1.SelectedIndex = 0;
@@ -64,10 +64,11 @@ namespace CSserial
         }
         void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            try
+
+            //try
             {
                 string received;
-                if (serialPort1.BytesToRead < 30)
+                if (serialPort1.BytesToRead < 30 || serialPort1.BytesToRead > 100)
                 {
                     received = serialPort1.ReadLine();
                     received += "\n";
@@ -144,6 +145,9 @@ namespace CSserial
                     label22.Text = "当前在装载的列数:    " + Convert.ToInt32(receivedChars[27]);
                     label23.Text = "当前在装载的物料编号:" + Convert.ToInt32(receivedChars[28]);
 
+                    numericUpDown1.Value = Convert.ToInt32(receivedChars[29]);
+                    numericUpDown2.Value = Convert.ToInt32(receivedChars[30]);
+
                     toolStripStatusLabel2.Text = "信息最后更新时间:" + DateTime.Now.ToString();
 
                 }
@@ -161,17 +165,21 @@ namespace CSserial
                 }
                 else if (received.Equals("OK,but error\n"))
                 {
-                    richTextBox1.AppendText("ARM端已收到消息,但执行时发生错误\n");
+                    richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]ARM端已收到消息,但执行时发生错误\n");
                 }
                 else if (received.Equals("ERR,unknown cmd\n"))
                 {
                     richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]ARM端无法理解的指令\n");
                 }
+                else richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]"+received);
             }
-            catch (Exception err)
-            {
-                MessageBox.Show("命令解析出错\n"+err.Data.ToString());
-            }
+            /*
+        catch (Exception err)
+        {
+            richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]命令解析出错\n"+err.Data.ToString());
+            MessageBox.Show("命令解析出错\n"+err.Data.ToString());
+        }*/
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -180,11 +188,13 @@ namespace CSserial
 
         private void main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (MessageBox.Show("确认退出?", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.OK)
+                e.Cancel = true;
             if (serialPort1.IsOpen == true)
                 serialPort1.Close();
         }
         public void enableItems()
-        {         
+        {
             this.comboBox1.Enabled = true;
             this.comboBox2.Enabled = true;
             this.comboBox3.Enabled = true;
@@ -201,6 +211,7 @@ namespace CSserial
         public void enableItems2()
         {
             this.button1.Enabled = true;
+            this.button4.Enabled = true;
             this.checkBox13.Enabled = true;
             this.checkBox14.Enabled = true;
             this.checkBox15.Enabled = true;
@@ -222,7 +233,7 @@ namespace CSserial
             this.button3.Enabled = false;
         }
         public void disableItems()
-        {           
+        {
             this.comboBox1.Enabled = false;
             this.comboBox2.Enabled = false;
             this.comboBox3.Enabled = false;
@@ -240,13 +251,14 @@ namespace CSserial
         {
             this.button1.Enabled = false;
             this.button3.Enabled = false;
+            this.button4.Enabled = false;
             this.checkBox13.Enabled = false;
             this.checkBox14.Enabled = false;
             this.checkBox15.Enabled = false;
             this.checkBox16.Enabled = false;
             this.checkBox17.Enabled = false;
             this.checkBox18.Enabled = false;
-           // this.checkBox19.Enabled = false;
+            // this.checkBox19.Enabled = false;
             this.checkBox1.Enabled = false;
             this.checkBox2.Enabled = false;
             this.checkBox3.Enabled = false;
@@ -277,7 +289,7 @@ namespace CSserial
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            string s="SET 01 ";
+            string s = "SET 01 ";
             if (checkBox1.Checked == true)
                 s += "1\0";
             else s += "0\0";
@@ -398,6 +410,36 @@ namespace CSserial
                 (new Form1()).Show();
             else MessageBox.Show("未开启串口,无法使用串口工具");
         }
-        
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            string s = "";
+            s = "SET E1 " + numericUpDown1.Value.ToString() + "\0";
+            send(s);
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            string s = "";
+            s = "SET E2 " + numericUpDown2.Value.ToString() + "\0";
+            send(s);
+        }
+
+        private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Close();
+                this.button2.Enabled = true;
+                this.button4.Enabled = false;
+                this.button1.Enabled = false;
+            }
+
+        }
     }
 }

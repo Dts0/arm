@@ -6,19 +6,25 @@
 void sensorsInit(void)//传感器初始化
 {
 	GPIO_InitTypeDef  GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD | RCC_APB2Periph_GPIOE, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOD | RCC_APB2Periph_GPIOE, ENABLE);
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //急停
+  GPIO_Init(GPIOE, &GPIO_InitStructure);
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_6|GPIO_Pin_7|
 																GPIO_Pin_11|GPIO_Pin_12|GPIO_Pin_13;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; //设置为输入下拉
-  GPIO_Init(GPIOD, &GPIO_InitStructure);
+  GPIO_Init(GPIOD, &GPIO_InitStructure);		
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; //设置为输入下拉
   GPIO_Init(GPIOE, &GPIO_InitStructure);
 	
+	GPIO_SetBits(GPIOE,GPIO_Pin_6);
 	GPIO_ResetBits(GPIOD,GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_6|GPIO_Pin_7|
 																GPIO_Pin_11|GPIO_Pin_12|GPIO_Pin_13);
 	GPIO_ResetBits(GPIOE,GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5);

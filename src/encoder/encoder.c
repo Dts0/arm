@@ -6,6 +6,7 @@
 static volatile int turn1=0;
 static volatile int turn2=0;
 
+static volatile int dis1=0;
 void Encoder1Init()
 {
 	
@@ -34,7 +35,12 @@ void Encoder1SetCount(int count)//设置计数
 }
 int Encoder1GetDistance(int d)//获得距离
 {
-	return (int)(turn1*3.14*d+3.14*d*Encoder1GetDeg()/360);
+	//dis1=(int)(turn1*3.14*d+3.14*d*Encoder1GetDeg()/360)
+	return dis1;
+}
+void Encoder1SetDistance(int dis,int d)//设置距离
+{
+	dis1=dis;
 }
 
 void Encoder2Init(void)
@@ -142,6 +148,12 @@ void Encoder2SetCount(int count)
 int Encoder2GetDistance(int d)
 {
 	return (int)(turn2*3.14*d+3.14*d*Encoder2GetCount()/400);
+}
+void Encoder2SetDistance(int dis,int d)
+{
+	Encoder2SetTurn((int)dis/3.14*d);
+	Encoder2SetCount((int)(400*(dis/3.14-turn2*d)));
+	
 }
 
 void EXTI1_IRQHandler(void)

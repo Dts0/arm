@@ -37,7 +37,6 @@ void thread_main(void *p)
 #endif
 	/*多余内容
 	motorTurn(motors.motory,off);//伸缩机停
-	setStateRunFlag(-1,off);
 	*/
 	
 	/*//新线程,内容等价于
@@ -614,6 +613,9 @@ void thread_serial_send(void *p)
 	sprintf(msg,"%s%d ",msg,state.height);
 	sprintf(msg,"%s%d ",msg,state.column);
 	sprintf(msg,"%s%d ",msg,state.localM);
+	
+	sprintf(msg,"%s%d ",msg,Encoder1GetDistance(D_JuanYangJi));
+	sprintf(msg,"%s%d ",msg,Encoder2GetDistance(D_ShenSuoJiDianJi));
 	sprintf(msg,"%s%s\n",msg,_SEND_END_CHAR);
 	os_serialPrintf(msg);
 	sprintf(msg,"");//清空msg
