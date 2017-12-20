@@ -151,9 +151,8 @@ int Encoder2GetDistance(int d)
 }
 void Encoder2SetDistance(int dis,int d)
 {
-	Encoder2SetTurn((int)dis/3.14*d);
-	Encoder2SetCount((int)(400*(dis/3.14-turn2*d)));
-	
+	Encoder2SetTurn(dis*d/3.14);
+	Encoder2SetCount((400*(dis/3.14-turn2*d)));
 }
 
 void EXTI1_IRQHandler(void)

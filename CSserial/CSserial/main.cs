@@ -17,8 +17,10 @@ namespace CSserial
     {
         private byte[] sendData = null;
         private chooseSerial FormChooseSerial;
+        private bool sendable=true;
         private void send(string msg)
         {
+            if (sendable == false) return;
             sendData = Encoding.UTF8.GetBytes(msg);
 
             if (serialPort1.IsOpen)
@@ -44,6 +46,7 @@ namespace CSserial
             InitializeComponent();
             disableItems();
             disableItems2();
+            numericUpDown2.Enabled = false;
             FormChooseSerial = new chooseSerial();
             FormChooseSerial.Hide();
             serialPort1.NewLine = "\n";
@@ -64,7 +67,7 @@ namespace CSserial
         }
         void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-
+            sendable = false;
             //try
             {
                 string received;
@@ -151,23 +154,23 @@ namespace CSserial
                     toolStripStatusLabel2.Text = "信息最后更新时间:" + DateTime.Now.ToString();
 
                 }
-                else if (received.Equals("OK,stop\n"))
+                else if (received.Equals("OK,stop \n"))
                 {
                     richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]已停止\n");
                 }
-                else if (received.Equals("OK,reset\n"))
+                else if (received.Equals("OK,reset \n"))
                 {
                     richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]已重启\n");
                 }
-                else if (received.Equals("OK,continue\n"))
+                else if (received.Equals("OK,continue \n"))
                 {
                     richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]已继续运行\n");
                 }
-                else if (received.Equals("OK,but error\n"))
+                else if (received.Equals("OK,but error \n"))
                 {
                     richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]ARM端已收到消息,但执行时发生错误\n");
                 }
-                else if (received.Equals("ERR,unknown cmd\n"))
+                else if (received.Equals("ERR,unknown cmd \n"))
                 {
                     richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]ARM端无法理解的指令\n");
                 }
@@ -179,7 +182,7 @@ namespace CSserial
             richTextBox1.AppendText("[" + DateTime.Now.ToString() + "]命令解析出错\n"+err.Data.ToString());
             MessageBox.Show("命令解析出错\n"+err.Data.ToString());
         }*/
-
+            sendable = true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -212,6 +215,9 @@ namespace CSserial
         {
             this.button1.Enabled = true;
             this.button4.Enabled = true;
+            this.numericUpDown1.Enabled = true;
+            this.numericUpDown3.Enabled = true;
+            this.numericUpDown4.Enabled = true;
             this.checkBox13.Enabled = true;
             this.checkBox14.Enabled = true;
             this.checkBox15.Enabled = true;
@@ -249,6 +255,9 @@ namespace CSserial
         }
         public void disableItems2()
         {
+            this.numericUpDown1.Enabled = false;
+            this.numericUpDown3.Enabled = false;
+            this.numericUpDown4.Enabled = false;
             this.button1.Enabled = false;
             this.button3.Enabled = false;
             this.button4.Enabled = false;
@@ -418,13 +427,6 @@ namespace CSserial
             send(s);
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-            string s = "";
-            s = "SET E2 " + numericUpDown2.Value.ToString() + "\0";
-            send(s);
-        }
-
         private void 退出XToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -440,6 +442,20 @@ namespace CSserial
                 this.button1.Enabled = false;
             }
 
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            string s = "";
+            s = "SET C2 " + numericUpDown3.Value.ToString() + "\0";
+            send(s);
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            string s = "";
+            s = "SET E2 " + numericUpDown4.Value.ToString() + "\0";
+            send(s);
         }
     }
 }

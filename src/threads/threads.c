@@ -633,7 +633,7 @@ void thread_serial_receive(void *p)
 	char *cmd;
 	while(1)
 	{
-		cmd = os_serialReceivedString(10);
+		cmd = os_serialReceivedString(20);
 	if(strcmp(cmd,cmds[0])==0) 
 		{
 			cmd0_STOP();

@@ -20,7 +20,7 @@
 
 #define ItemLength 910//物料长度,等于小车后退的距离
 #define ItemHeight 960//物料高度,等于卸料盘每层的上升或下降高度
-#define ItemWidth //物料宽度
+#define ItemWidth //物料宽度,暂不需要
 #define MaxHeight 7//最大高度
 #define MaxColumn 8//最大列数 y方向需要进行的循环次数
 
